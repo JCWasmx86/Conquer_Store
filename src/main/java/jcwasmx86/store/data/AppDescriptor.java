@@ -10,11 +10,17 @@ import java.net.URL;
  * name of the app. {@code description} is the description shown in the store. {@code logo} is the thumbnail in the
  * minified view.
  * {@code imageURLs} are URLs as showcases. {@code dependencies} are the dependencies of the app. These are the
- * {@code uniqueIdentifier} of an app.
+ * {@code uniqueIdentifier} of an app. {@code version} is the version in the form <code>major.minor.patch</code>.
+ * {@code tags} are tags that show what this is, e.g. a plugin, addition or similar.
  * {@code isLibrary} signals, that this app shouldn't be listed.
  */
 public record AppDescriptor(URL downloadBundle, String uniqueIdentifier, long installedSize, String name,
 							String description, URL logo,
-							URL[] imageURLs, String[] dependencies, boolean isLibrary) {
+							URL[] imageURLs, String[] dependencies, String version, String[] tags, boolean isLibrary,
+							Hashes hashes) {
 
+	/**
+	 * Hashes of the downloaded bundle. MD5, SHA1, SHA2 to prevent data corruption and validate the downloaded package.
+	 */
+	public static record Hashes(String md5, String sha1, String sha2) {}
 }

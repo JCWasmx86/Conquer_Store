@@ -34,10 +34,21 @@ public class StoreInitTask implements InitTask {
 		}
 		final var urls = this.collectUrls();
 		final var descriptors = this.downloadDescriptors(urls);
-		this.save(descriptors);
+		this.saveDescriptors(descriptors);
+		this.writeLastUpdated();
 	}
 
-	private void save(final List<AppDescriptor> descriptors) {
+	private void writeLastUpdated() {
+		final var string = Instant.now().getEpochSecond() + "";
+		try {
+			Files.write(Paths.get(lastUpdated), string.getBytes(), StandardOpenOption.CREATE);
+		} catch (IOException e) {
+			//Shouldn't fail!
+			Shared.LOGGER.exception(e);
+		}
+	}
+
+	private void saveDescriptors(final List<AppDescriptor> descriptors) {
 		final var string = new GsonBuilder().setPrettyPrinting().create().toJson(descriptors);
 		try {
 			Files.write(Paths.get(appData), string.getBytes(), StandardOpenOption.CREATE);
