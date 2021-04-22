@@ -34,7 +34,7 @@ public record SearchEngine(StoreState state, String query) {
 		if (token.toCharArray()[0] == '#') {
 			if (token.length() > 3) {
 				final var s = token.substring(1);
-				return a -> Arrays.asList(a.tags()).contains(s) || Arrays.asList(a.tags()).stream().filter(b -> b.contains(s)).count() != 0;
+				return a -> Arrays.asList(a.tags()).contains(s) || Arrays.stream(a.tags()).anyMatch(b -> b.contains(s));
 			} else {
 				//Tag is too short for meaningful results.
 				token = token.substring(1);

@@ -3,6 +3,7 @@ package jcwasmx86.store;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.BoxLayout;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -54,10 +55,12 @@ public class AppExplorer extends JPanel implements KeyListener {
 			stream = stream.filter(p);
 		}
 		final var resultList = stream.toList();
-		if (resultList.isEmpty()) {
-			//TODO: Show some "Nothing here!"
-		} else {
+		if (!resultList.isEmpty()) {
 			resultList.stream().map(a -> new AppEntry(this.state, a)).forEach(this.appPanel::add);
+		} else {
+			final var label = new JLabel();
+			label.setText(Messages.getString("store.nothingHere"));
+			this.appPanel.add(label);
 		}
 	}
 

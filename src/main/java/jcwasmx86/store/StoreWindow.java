@@ -3,7 +3,6 @@ package jcwasmx86.store;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import javax.swing.JFrame;
-import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
 import jcwasmx86.store.data.StoreState;
@@ -28,7 +27,6 @@ public class StoreWindow extends JFrame implements WindowListener {
 
 	private void initialize() {
 		if (this.initialized) {
-			return;
 		} else {
 			this.setTitle(Messages.getString("store.title"));
 			this.state = StoreState.obtain();

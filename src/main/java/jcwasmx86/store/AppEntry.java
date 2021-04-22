@@ -1,6 +1,7 @@
 package jcwasmx86.store;
 
 import java.awt.Font;
+import java.util.Objects;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -21,8 +22,8 @@ public class AppEntry extends JPanel {
 		nameLabel.setFont(nameLabel.getFont().deriveFont(Font.BOLD));
 		this.add(nameLabel);
 		if (state.isInstalled(appDescriptor)) {
-			final var installedIcon = new JLabel(new ImageIcon(ClassLoader.getSystemClassLoader().getResource("store" +
-				"/installed.png")));
+			final var installedIcon = new JLabel(new ImageIcon(Objects.requireNonNull(ClassLoader.getSystemClassLoader().getResource("store" +
+				"/installed.png"))));
 			installedIcon.setToolTipText(Messages.getString("store.alreadyInstalled"));
 			this.add(installedIcon);
 		}

@@ -14,6 +14,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -69,7 +70,6 @@ public class StoreInitTask implements InitTask {
 					ret.addAll(Arrays.asList(descriptors));
 				} catch (IOException e) {
 					Shared.LOGGER.exception(e);
-					return;
 				}
 			} catch (MalformedURLException e) {
 				Shared.LOGGER.exception(e);
@@ -88,7 +88,7 @@ public class StoreInitTask implements InitTask {
 					Shared.LOGGER.exception(e);
 					return null;
 				}
-			}).filter(a -> a != null).distinct().sorted().forEach(urls::add);
+			}).filter(Objects::nonNull).distinct().sorted().forEach(urls::add);
 		} catch (IOException e) {
 			Shared.LOGGER.exception(e);
 			return List.of();

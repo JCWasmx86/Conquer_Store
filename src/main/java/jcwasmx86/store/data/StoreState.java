@@ -8,6 +8,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import com.google.gson.Gson;
 import conquer.data.Shared;
@@ -41,7 +42,7 @@ public class StoreState {
 					Shared.LOGGER.exception(e);
 					return null;
 				}
-			}).filter(a -> a != null).distinct().sorted().forEach(urls::add);
+			}).filter(Objects::nonNull).distinct().sorted().forEach(urls::add);
 		} catch (IOException e) {
 			Shared.LOGGER.exception(e);
 		}
