@@ -99,7 +99,7 @@
 				<artifactId>maven-shade-plugin</artifactId>
 				<version>3.2.4</version>
 				<!-- Doesn't work, as the ASM framework doesn't support Java 16 currently-->
-				<!--<executions>
+				<executions>
 					<execution>
 						<phase>package</phase>
 						<goals>
@@ -114,7 +114,7 @@
 							</relocations>
 						</configuration>
 					</execution>
-				</executions>-->
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
