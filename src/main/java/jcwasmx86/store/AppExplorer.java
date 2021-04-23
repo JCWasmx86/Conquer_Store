@@ -37,7 +37,6 @@ public class AppExplorer extends JPanel implements KeyListener {
 	private void rebuildGUI() {
 		this.cleanGUI();
 		this.state.getDescriptors().stream().map(a -> new AppEntry(this.state, a)).forEach(this.appPanel::add);
-
 	}
 
 	private void cleanGUI() {
