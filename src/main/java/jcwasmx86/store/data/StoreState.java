@@ -88,10 +88,9 @@ public class StoreState {
 
 	public void uninstall(final AppDescriptor descriptor) {
 		if (this.isInstalled(descriptor)) {
-			return;
 		} else {
 			final var appHandle =
-				this.installedApps.stream().filter(a -> a.uniqueIdentifier().equals(descriptor.uniqueIdentifier())).findFirst().orElseGet(null);
+				this.installedApps.stream().filter(a -> a.uniqueIdentifier().equals(descriptor.uniqueIdentifier())).findFirst().get();
 			if (appHandle == null) {
 				return;
 			}
@@ -140,6 +139,7 @@ public class StoreState {
 		todo.stream().map(this::forName).forEach(a -> {
 			final var installer = new AppInstaller(a);
 			final var installedApp = installer.install(a == descriptor);
+			this.installedApps.add(installedApp);
 		});
 	}
 }

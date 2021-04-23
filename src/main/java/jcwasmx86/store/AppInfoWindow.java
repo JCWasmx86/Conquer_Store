@@ -40,21 +40,15 @@ public class AppInfoWindow extends JFrame {
 		final var panel = new JPanel();
 		if (this.state.isInstalled(this.descriptor)) {
 			final var button = new JButton(Messages.getString("store.uninstall"));
-			button.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					state.uninstall(AppInfoWindow.this.descriptor);
-					state.serialize();
-				}
+			button.addActionListener(e -> {
+				state.uninstall(AppInfoWindow.this.descriptor);
+				state.serialize();
 			});
 		} else {
 			final var button = new JButton(Messages.getString("store.install"));
-			button.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					state.install(AppInfoWindow.this.descriptor);
-					state.serialize();
-				}
+			button.addActionListener(e -> {
+				state.install(AppInfoWindow.this.descriptor);
+				state.serialize();
 			});
 		}
 		return panel;

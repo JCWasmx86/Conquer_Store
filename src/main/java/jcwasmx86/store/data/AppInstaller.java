@@ -34,7 +34,7 @@ public class AppInstaller {
 	}
 
 	private List<String> extractFiles(final File file) {
-		final List<String> ret = new ArrayList<String>();
+		final List<String> ret = new ArrayList<>();
 		try (final var zip = new ZipInputStream(new FileInputStream(file))) {
 			ZipEntry ze;
 			while ((ze = zip.getNextEntry()) != null) {
@@ -69,8 +69,8 @@ public class AppInstaller {
 			digest.update(bytes);
 			final var hashAsBytes = digest.digest();
 			var hash = "";
-			for (int i = 0; i < hashAsBytes.length; i++) {
-				hash += Integer.toString((hashAsBytes[i] & 0xff) + 0x100, 16).substring(1);
+			for (byte hashAsByte : hashAsBytes) {
+				hash += Integer.toString((hashAsByte & 0xff) + 0x100, 16).substring(1);
 			}
 			if (!hash.equals(expected)) {
 				throw new AppInstallFailedException(this.descriptor.uniqueIdentifier() + ": " + hashType + " doesn't" +
