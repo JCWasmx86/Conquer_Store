@@ -30,7 +30,7 @@ public class StoreInitTask implements InitTask {
 	public void initialize() {
 		final var lastUpdated = readLastUpdated();
 		final var now = Instant.now().getEpochSecond();
-		if (Math.abs(now - lastUpdated) > StoreInitTask.SECONDS_PER_DAY) {
+		if (Math.abs(now - lastUpdated) < StoreInitTask.SECONDS_PER_DAY) {
 			return;
 		}
 		final var urls = this.collectUrls();
