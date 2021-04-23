@@ -7,10 +7,10 @@ import java.util.function.Predicate;
 
 public record SearchEngine(StoreState state, String query) {
 	public List<Predicate<AppDescriptor>> parse() {
-		if (query.isEmpty()) {
-			return List.of();
-		}
 		final var ret = new ArrayList<Predicate<AppDescriptor>>();
+		if (query.isEmpty()) {
+			return ret;
+		}
 		final int len = this.query.length();
 		int idx = 0;
 		String tmp = "";

@@ -26,8 +26,7 @@ public class StoreWindow extends JFrame implements WindowListener {
 	}
 
 	private void initialize() {
-		if (this.initialized) {
-		} else {
+		if (!this.initialized) {
 			this.setTitle(Messages.getString("store.title"));
 			this.state = StoreState.obtain();
 			this.addWindowListener(this);

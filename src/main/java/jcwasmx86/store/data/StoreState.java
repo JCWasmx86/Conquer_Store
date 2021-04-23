@@ -5,13 +5,18 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import conquer.data.Shared;
+import jcwasmx86.store.data.InstalledApp.InstalledFile;
 
 public class StoreState {
 	private static String appData = Data.STORE_DATA_DIR + "/apps.json";
@@ -69,5 +74,50 @@ public class StoreState {
 
 	public boolean isInstalled(AppDescriptor appDescriptor) {
 		return this.installedApps.stream().filter(a -> a.uniqueIdentifier().equals(appDescriptor.uniqueIdentifier())).count() == 1;
+	}
+
+	public void uninstall(final AppDescriptor descriptor) {
+		if (this.isInstalled(descriptor)) {
+			return;
+		} else {
+			final var appHandle =
+				this.installedApps.stream().filter(a -> a.uniqueIdentifier().equals(descriptor.uniqueIdentifier())).findFirst().orElseGet(null);
+			if (appHandle == null) {
+				return;
+			}
+			this.uninstall(appHandle);
+		}
+	}
+
+	private void uninstall(InstalledApp appHandle) {
+		//Remove the app itself
+		Arrays.stream(appHandle.files()).forEach(InstalledFile::delete);
+		this.installedApps.remove(appHandle);
+		//Get all dependencies (apt autoremove-like)
+		final var deps = appHandle.dependencies();
+		for (final var dep : deps) {
+			//For each dependency, check whether another app requires it.
+			//If yes, don't do anything, else
+			final var hasOtherDependencies =
+				this.installedApps.stream().filter(a -> a.uniqueIdentifier().equals(dep)).filter(a -> !a.explicitlyInstalled()).filter(a -> {
+					return this.installedApps.stream().filter(b -> Arrays.stream(b.dependencies()).filter(c -> c.equals(a.uniqueIdentifier())).count() == 1).count() == 0;
+				}).count() != 0;
+			if (!hasOtherDependencies) {
+				final var ia =
+					this.installedApps.stream().filter(a -> a.uniqueIdentifier().equals(dep)).findFirst().get();
+				this.uninstall(ia);
+			}
+		}
+	}
+
+	public void serialize() {
+		final var s =
+			new GsonBuilder().setPrettyPrinting().create().toJson(this.installedApps.toArray(new InstalledApp[0]));
+		try {
+			Files.writeString(Paths.get(installedMetaData), s, StandardOpenOption.WRITE,
+				StandardOpenOption.TRUNCATE_EXISTING);
+		} catch (IOException e) {
+			Shared.LOGGER.exception(e);
+		}
 	}
 }
