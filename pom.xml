@@ -33,12 +33,12 @@
 		<dependency>
 			<groupId>conquer</groupId>
 			<artifactId>conquer</artifactId>
-			<version>LATEST</version>
+			<version>2.1.0</version>
 		</dependency>
 		<dependency>
 			<groupId>conquer</groupId>
 			<artifactId>conquer_spi</artifactId>
-			<version>LATEST</version>
+			<version>2.1.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.code.gson</groupId>

@@ -19,16 +19,15 @@ public class StoreButton implements GUIMenuPlugin {
 
 	@Override
 	public JMenuItem getMenuItem() {
-		final var item = new JMenuItem();
-		item.setAction(action);
-		item.setText(Messages.getString("store.open"));
-		return item;
+		//Not needed
+		return null;
 	}
 
 	@Override
 	public JButton getButton() {
-		final var button = new JButton(Messages.getString("store.open"));
+		final var button = new JButton();
 		button.setAction(action);
+		button.setText(Messages.getString("store.open"));
 		return button;
 	}
 }
