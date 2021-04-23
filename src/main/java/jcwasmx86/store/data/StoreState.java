@@ -10,8 +10,10 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -76,6 +78,14 @@ public class StoreState {
 		return this.installedApps.stream().filter(a -> a.uniqueIdentifier().equals(appDescriptor.uniqueIdentifier())).count() == 1;
 	}
 
+	private AppDescriptor forName(final String unique) {
+		return this.descriptors.stream().filter(a -> a.uniqueIdentifier().equals(unique)).findFirst().get();
+	}
+
+	private InstalledApp forDescriptor(final AppDescriptor descriptor) {
+		return this.installedApps.stream().filter(a -> a.uniqueIdentifier().equals(descriptor.uniqueIdentifier())).findFirst().get();
+	}
+
 	public void uninstall(final AppDescriptor descriptor) {
 		if (this.isInstalled(descriptor)) {
 			return;
@@ -89,25 +99,11 @@ public class StoreState {
 		}
 	}
 
+	//TODO: Removed all installed dependencies.
 	private void uninstall(InstalledApp appHandle) {
 		//Remove the app itself
 		Arrays.stream(appHandle.files()).forEach(InstalledFile::delete);
 		this.installedApps.remove(appHandle);
-		//Get all dependencies (apt autoremove-like)
-		final var deps = appHandle.dependencies();
-		for (final var dep : deps) {
-			//For each dependency, check whether another app requires it.
-			//If yes, don't do anything, else
-			final var hasOtherDependencies =
-				this.installedApps.stream().filter(a -> a.uniqueIdentifier().equals(dep)).filter(a -> !a.explicitlyInstalled()).filter(a -> {
-					return this.installedApps.stream().filter(b -> Arrays.stream(b.dependencies()).filter(c -> c.equals(a.uniqueIdentifier())).count() == 1).count() == 0;
-				}).count() != 0;
-			if (!hasOtherDependencies) {
-				final var ia =
-					this.installedApps.stream().filter(a -> a.uniqueIdentifier().equals(dep)).findFirst().get();
-				this.uninstall(ia);
-			}
-		}
 	}
 
 	public void serialize() {
@@ -119,5 +115,31 @@ public class StoreState {
 		} catch (IOException e) {
 			Shared.LOGGER.exception(e);
 		}
+	}
+
+	public Set<String> appsToInstall(final AppDescriptor descriptor) {
+		final var ret = new HashSet<String>();
+		if (!this.isInstalled(descriptor)) {
+			ret.add(descriptor.uniqueIdentifier());
+		}
+		for (final var dep : descriptor.dependencies()) {
+			if (!this.isInstalled(this.forName(dep))) {
+				ret.add(dep);
+				ret.addAll(appsToInstall(this.forName(dep)));
+			}
+			//Else we can assume, all dependencies are already installed.
+		}
+		return ret;
+	}
+
+	public void install(final AppDescriptor descriptor) {
+		if (this.isInstalled(descriptor)) {
+			return;
+		}
+		final var todo = this.appsToInstall(descriptor);
+		todo.stream().map(this::forName).forEach(a -> {
+			final var installer = new AppInstaller(a);
+			final var installedApp = installer.install(a == descriptor);
+		});
 	}
 }
