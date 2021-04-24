@@ -71,6 +71,7 @@
 				<version>2.22.1</version>
 				<configuration>
 					<argLine>--enable-preview</argLine>
+					<trimStackTrace>false</trimStackTrace>
 				</configuration>
 			</plugin>
 			<plugin>

@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,10 +15,10 @@ import java.util.zip.ZipInputStream;
 import conquer.data.Shared;
 import jcwasmx86.store.data.InstalledApp.InstalledFile;
 
-public class AppInstaller {
+public class AppInstallerTask {
 	private final AppDescriptor descriptor;
 
-	AppInstaller(AppDescriptor a) {
+	AppInstallerTask(AppDescriptor a) {
 		this.descriptor = a;
 	}
 
@@ -39,6 +37,10 @@ public class AppInstaller {
 			ZipEntry ze;
 			while ((ze = zip.getNextEntry()) != null) {
 				final var name = ze.getName();
+				if (name.contains("..")) {
+					throw new AppInstallFailedException("ZipEntry in " + file.getName() + " contained ..! Aborting " +
+						"installation");
+				}
 				ret.add(name);
 				final var outputFile = new File(Shared.BASE_DIRECTORY, name);
 				if (outputFile.exists()) {
@@ -55,32 +57,10 @@ public class AppInstaller {
 	private void checkHashes(File file) {
 		try {
 			final var bytes = Files.readAllBytes(Paths.get(file.toURI()));
-			this.checkHash("MD5", this.descriptor.hashes().md5(), bytes);
-			this.checkHash("SHA-1", this.descriptor.hashes().sha1(), bytes);
-			this.checkHash("SHA-2", this.descriptor.hashes().sha2(), bytes);
-		} catch (IOException e) {
+			this.descriptor.hashes().validate(bytes, this.descriptor.uniqueIdentifier());
+		} catch (IOException | SecurityException e) {
 			throw new AppInstallFailedException(e);
 		}
-	}
-
-	private void checkHash(final String hashType, final String expected, final byte[] bytes) {
-		try {
-			final var digest = MessageDigest.getInstance(hashType);
-			digest.update(bytes);
-			final var hashAsBytes = digest.digest();
-			StringBuilder hash = new StringBuilder();
-			for (byte hashAsByte : hashAsBytes) {
-				hash.append(Integer.toString((hashAsByte & 0xff) + 0x100, 16).substring(1));
-			}
-			if (!hash.toString().equals(expected)) {
-				throw new AppInstallFailedException(this.descriptor.uniqueIdentifier() + ": " + hashType + " doesn't" +
-					" " +
-					"match. Expected " + expected + ", got " + hash);
-			}
-		} catch (NoSuchAlgorithmException e) {
-			throw new AppInstallFailedException(e);
-		}
-
 	}
 
 	private File downloadFile() {
