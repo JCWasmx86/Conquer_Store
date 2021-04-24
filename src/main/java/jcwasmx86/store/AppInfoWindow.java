@@ -30,12 +30,14 @@ public class AppInfoWindow extends JFrame {
 		nameLabel.setFont(nameLabel.getFont().deriveFont(Font.BOLD));
 		topPanel.add(nameLabel);
 		final var buttonPanel = this.buildButtonPanel();
+		this.add(buttonPanel);
 		this.add(topPanel);
 		this.setVisible(true);
 	}
 
 	private JPanel buildButtonPanel() {
 		final var panel = new JPanel();
+		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 		if (this.state.isInstalled(this.descriptor)) {
 			final var button = new JButton(Messages.getString("store.uninstall"));
 			button.addActionListener(e -> {
