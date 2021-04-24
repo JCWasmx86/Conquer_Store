@@ -9,7 +9,12 @@ public record UninstallDependencyResolver(InstalledApp toRemove, List<InstalledA
 	Set<InstalledApp> getAllRemovablePackages() {
 		final var ret = new HashSet<InstalledApp>();
 		this.getAllRemovablePackages(this.toRemove, ret);
+		this.cleanup(ret);
 		return ret;
+	}
+
+	private void cleanup(Set<InstalledApp> set) {
+		this.installedApps.stream().filter(a -> this.numberOfDependents(a) == 0).filter(a -> !a.explicitlyInstalled()).forEach(set::add);
 	}
 
 	private void getAllRemovablePackages(final InstalledApp toRemove, final Set<InstalledApp> ret) {
