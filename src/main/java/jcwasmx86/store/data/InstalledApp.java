@@ -1,6 +1,7 @@
 package jcwasmx86.store.data;
 
 import java.io.File;
+import java.util.Arrays;
 
 import conquer.data.Shared;
 
@@ -10,6 +11,10 @@ import conquer.data.Shared;
  */
 public record InstalledApp(String displayName, String uniqueIdentifier, InstalledFile[] files,
 						   boolean explicitlyInstalled, String[] dependencies) {
+
+	public boolean dependsOn(InstalledApp toRemove) {
+		return Arrays.binarySearch(this.dependencies, toRemove.uniqueIdentifier) != -1;
+	}
 
 	/**
 	 * {@code fileDir} is the filename, based on the base directory (E.g. ~/.config/.conquer on linux)
