@@ -33,7 +33,7 @@ public record InstallDependencyResolver(AppDescriptor appToInstall, List<AppDesc
 	Set<AppDescriptor> appsToInstall() {
 		return this.buildDependencySet().stream()
 			//Remove all that are already installed
-			.filter(a -> this.installedApps.stream().filter(b -> b.uniqueIdentifier().equals(a)).count() == 0)
+			.filter(a -> this.installedApps.stream().noneMatch(b -> b.uniqueIdentifier().equals(a)))
 			.map(this::forName)
 			.collect(Collectors.toSet());
 	}
