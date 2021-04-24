@@ -124,7 +124,7 @@ public class StoreState {
 		for (final var dep : descriptor.dependencies()) {
 			if (!this.isInstalled(this.forName(dep))) {
 				ret.add(dep);
-				ret.addAll(appsToInstall(this.forName(dep)));
+				ret.addAll(this.appsToInstall(this.forName(dep)));
 			}
 			//Else we can assume, all dependencies are already installed.
 		}
@@ -141,5 +141,9 @@ public class StoreState {
 			final var installedApp = installer.install(a == descriptor);
 			this.installedApps.add(installedApp);
 		});
+	}
+
+	public AppDescriptor getDescriptor(InstalledApp a) {
+		return this.forName(a.uniqueIdentifier());
 	}
 }

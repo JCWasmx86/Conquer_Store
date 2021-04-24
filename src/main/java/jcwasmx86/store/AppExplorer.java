@@ -13,21 +13,20 @@ import jcwasmx86.store.data.StoreState;
 
 public class AppExplorer extends JPanel implements KeyListener {
 	private StoreState state;
-	private JPanel searchPanel;
 	private JPanel appPanel;
 	private JTextField textField;
 
 	AppExplorer() {
-		this.searchPanel = new JPanel();
+		JPanel searchPanel = new JPanel();
 		this.appPanel = new JPanel();
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		this.searchPanel.setLayout(new BoxLayout(this.searchPanel, BoxLayout.X_AXIS));
+		searchPanel.setLayout(new BoxLayout(searchPanel, BoxLayout.X_AXIS));
 		this.textField = new JTextField(15);
 		this.textField.addKeyListener(this);
 		final var searchLabel = new JLabel(Messages.getString("store.search"));
-		this.searchPanel.add(searchLabel);
-		this.searchPanel.add(this.textField);
-		this.add(this.searchPanel);
+		searchPanel.add(searchLabel);
+		searchPanel.add(this.textField);
+		this.add(searchPanel);
 		this.appPanel.setLayout(new BoxLayout(this.appPanel, BoxLayout.Y_AXIS));
 		this.add(new JScrollPane(this.appPanel));
 	}

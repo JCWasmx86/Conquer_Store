@@ -35,6 +35,7 @@ public class StoreWindow extends JFrame implements WindowListener {
 				this.firstTime = false;
 			}
 			this.appExplorer.setState(this.state);
+			this.installedAppExplorer.setState(this.state);
 			this.pack();
 		}
 	}
@@ -43,7 +44,7 @@ public class StoreWindow extends JFrame implements WindowListener {
 		final var tabbedPane = new JTabbedPane();
 		this.appExplorer = new AppExplorer();
 		tabbedPane.add(Messages.getString("store.explore"), this.appExplorer);
-		this.installedAppExplorer = new InstalledAppExplorer();
+		this.installedAppExplorer = new InstalledAppExplorer(this.state);
 		tabbedPane.add(Messages.getString("store.exploreInstalled"), this.installedAppExplorer);
 		this.add(tabbedPane);
 	}
