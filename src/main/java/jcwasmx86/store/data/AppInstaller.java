@@ -68,11 +68,11 @@ public class AppInstaller {
 			final var digest = MessageDigest.getInstance(hashType);
 			digest.update(bytes);
 			final var hashAsBytes = digest.digest();
-			var hash = "";
+			StringBuilder hash = new StringBuilder();
 			for (byte hashAsByte : hashAsBytes) {
-				hash += Integer.toString((hashAsByte & 0xff) + 0x100, 16).substring(1);
+				hash.append(Integer.toString((hashAsByte & 0xff) + 0x100, 16).substring(1));
 			}
-			if (!hash.equals(expected)) {
+			if (!hash.toString().equals(expected)) {
 				throw new AppInstallFailedException(this.descriptor.uniqueIdentifier() + ": " + hashType + " doesn't" +
 					" " +
 					"match. Expected " + expected + ", got " + hash);

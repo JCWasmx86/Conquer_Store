@@ -9,7 +9,7 @@ import javax.swing.JMenuItem;
 import conquer.frontend.spi.GUIMenuPlugin;
 
 public class StoreButton implements GUIMenuPlugin {
-	private Action action = new AbstractAction() {
+	private final Action action = new AbstractAction() {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
