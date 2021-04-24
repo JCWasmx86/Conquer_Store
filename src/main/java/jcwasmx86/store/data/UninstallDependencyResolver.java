@@ -23,10 +23,10 @@ public record UninstallDependencyResolver(InstalledApp toRemove, List<InstalledA
 		Arrays.stream(this.toRemove.dependencies()).forEach(a -> {
 			final var dep = this.forName(a);
 			//Remove non-explicitly installed packages...
-			if (!ret.contains(a) && !dep.explicitlyInstalled()) {
+			if (!ret.contains(dep) && !dep.explicitlyInstalled()) {
 				final var numberOfDependents = this.numberOfDependents(dep);
 				final var alreadyRemoved =
-					this.installedApps.stream().filter(b -> b.dependsOn(dep)).filter(b -> ret.contains(b)).count();
+					this.installedApps.stream().filter(b -> b.dependsOn(dep)).filter(ret::contains).count();
 				//if all apps that depend on it will be uninstalled, too.
 				if (alreadyRemoved == numberOfDependents) {
 					this.getAllRemovablePackages(dep, ret);
