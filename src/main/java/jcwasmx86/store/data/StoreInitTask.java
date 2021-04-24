@@ -24,16 +24,16 @@ import conquer.init.InitTask;
 public class StoreInitTask implements InitTask {
 	private static String lastUpdated = Data.STORE_DATA_DIR + "/lastUpdated";
 	private static String appData = Data.STORE_DATA_DIR + "/apps.json";
-	private static long SECONDS_PER_DAY = 60 * 60 * 24;
+	private static long REFRESH_DELAY_IN_SECONDS = 60 * 60;
 
 	@Override
 	public void initialize() {
 		final var lastUpdated = readLastUpdated();
 		final var now = Instant.now().getEpochSecond();
-		if (Math.abs(now - lastUpdated) < StoreInitTask.SECONDS_PER_DAY) {
+		if (Math.abs(now - lastUpdated) < StoreInitTask.REFRESH_DELAY_IN_SECONDS) {
 			return;
 		}
-		final var urls = this.collectUrls();
+		final var urls = Data.collectURLs();
 		final var descriptors = this.downloadDescriptors(urls);
 		this.saveDescriptors(descriptors);
 		this.writeLastUpdated();
@@ -76,24 +76,6 @@ public class StoreInitTask implements InitTask {
 			}
 		});
 		return ret;
-	}
-
-	private List<URL> collectUrls() {
-		final var urls = new ArrayList<URL>();
-		try (final var br = new BufferedReader(new FileReader(Data.STORE_URLS_FILE))) {
-			br.lines().filter(a -> !a.startsWith("#")).map(spec -> {
-				try {
-					return new URL(spec);
-				} catch (MalformedURLException e) {
-					Shared.LOGGER.exception(e);
-					return null;
-				}
-			}).filter(Objects::nonNull).distinct().sorted().forEach(urls::add);
-		} catch (IOException e) {
-			Shared.LOGGER.exception(e);
-			return List.of();
-		}
-		return urls;
 	}
 
 	private long readLastUpdated() {
