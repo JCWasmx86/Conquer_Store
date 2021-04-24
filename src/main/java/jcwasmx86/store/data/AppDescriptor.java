@@ -28,7 +28,7 @@ public record AppDescriptor(URL downloadBundle, String uniqueIdentifier, long in
 		void validate(final byte[] bytes, final String uniqueIdentifier) {
 			this.checkHash("MD5", this.md5(), bytes, uniqueIdentifier);
 			this.checkHash("SHA-1", this.sha1(), bytes, uniqueIdentifier);
-			this.checkHash("SHA-2", this.sha2(), bytes, uniqueIdentifier);
+			this.checkHash("SHA-256", this.sha2(), bytes, uniqueIdentifier);
 		}
 
 		private void checkHash(final String hashType, final String expected, final byte[] bytes,
@@ -43,7 +43,7 @@ public record AppDescriptor(URL downloadBundle, String uniqueIdentifier, long in
 				}
 				if (!hash.toString().equals(expected)) {
 					throw new SecurityException(uniqueIdentifier + ": " + hashType + " doesn't match. Expected: " +
-						expected + ", got" + hash);
+						expected + ", got " + hash);
 				}
 			} catch (NoSuchAlgorithmException e) {
 				throw new AppInstallFailedException(e);

@@ -3,18 +3,11 @@ package jcwasmx86.store.data;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import conquer.data.Shared;
-import jcwasmx86.store.data.InstalledApp.InstalledFile;
 
 public class StoreState {
 	private static String appData = Data.STORE_DATA_DIR + "/apps.json";
