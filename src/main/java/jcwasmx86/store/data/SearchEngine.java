@@ -21,11 +21,10 @@ public record SearchEngine(StoreState state, String query) {
 				if (!tmp.isEmpty()) {
 					ret.add(this.interpretToken(tmp));
 				}
-				idx++;
 			} else {
 				tmp += chars[idx];
-				idx++;
 			}
+			idx++;
 		}
 		return ret;
 	}
