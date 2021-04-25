@@ -62,6 +62,35 @@ public class UninstallDependencyResolverTest {
 			this.toStringSet(resolver.getAllRemovablePackages()));
 	}
 
+	@Test
+	public void testRemovingWithDependentImplicitAndCleaningUp() {
+		final var toRemove = this.buildInstalledApp("toRemove", "dep1");
+		final var list = new ArrayList<InstalledApp>();
+		list.add(toRemove);
+		list.add(this.buildInstalledApp("dep1"));
+		list.add(this.buildInstalledApp("parent1", "toRemove", "child1"));
+		list.add(this.buildInstalledApp("child1","cleanMe"));
+		list.add(this.buildInstalledApp("cleanMe"));
+		final var resolver = new UninstallDependencyResolver(toRemove, list);
+		Assert.assertEquals(Set.of("toRemove", "dep1", "parent1", "child1", "cleanMe"),
+			this.toStringSet(resolver.getAllRemovablePackages()));
+	}
+
+	@Test
+	public void testRemovingWithDependentImplicitAndCleaningUpOfMore() {
+		final var toRemove = this.buildInstalledApp("toRemove1", "dep1");
+		final var list = new ArrayList<InstalledApp>();
+		list.add(toRemove);
+		list.add(this.buildInstalledApp("dep1"));
+		list.add(this.buildInstalledApp("parent1", "toRemove1", "child1"));
+		list.add(this.buildInstalledApp("child1", "cleanMe"));
+		list.add(this.buildInstalledApp("cleanMe2",true));
+		list.add(this.buildInstalledApp("cleanMe", "cleanMe2"));
+		final var resolver = new UninstallDependencyResolver(toRemove, list);
+		Assert.assertEquals(Set.of("toRemove1", "dep1", "parent1", "child1", "cleanMe"),
+			this.toStringSet(resolver.getAllRemovablePackages()));
+	}
+
 	private Set<String> toStringSet(Set<InstalledApp> set) {
 		return set.stream().map(InstalledApp::uniqueIdentifier).collect(Collectors.toSet());
 	}

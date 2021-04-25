@@ -7,34 +7,35 @@ import java.util.Set;
 
 public record UninstallDependencyResolver(InstalledApp toRemove, List<InstalledApp> installedApps) {
 	Set<InstalledApp> getAllRemovablePackages() {
+		System.out.println("Removing: " + this.toRemove.uniqueIdentifier());
 		final var ret = new HashSet<InstalledApp>();
 		this.getAllRemovablePackages(this.toRemove, ret);
-		this.cleanup(ret);
 		return ret;
 	}
 
-	private void cleanup(Set<InstalledApp> set) {
-		this.installedApps.stream().filter(a -> this.numberOfDependents(a) == 0).filter(a -> !a.explicitlyInstalled()).forEach(set::add);
-	}
 
-	private void getAllRemovablePackages(final InstalledApp toRemove, final Set<InstalledApp> ret) {
-		ret.add(toRemove);
+	private void getAllRemovablePackages(final InstalledApp appToRemove, final Set<InstalledApp> set) {
+		System.out.println("Visiting: " + appToRemove.uniqueIdentifier());
+		set.add(appToRemove);
 		//Unconditionally remove apps that depend on the app to remove.
-		this.installedApps.stream().filter(a -> a.dependsOn(toRemove)).forEach(a -> {
-			if (!ret.contains(a)) {
-				this.getAllRemovablePackages(a, ret);
+		this.installedApps.stream().filter(a -> a.dependsOn(appToRemove)).forEach(a -> {
+			System.out.println("Visiting dependent " + a.uniqueIdentifier() + " of " + appToRemove.uniqueIdentifier());
+			if (!set.contains(a)) {
+				this.getAllRemovablePackages(a, set);
 			}
 		});
-		Arrays.stream(this.toRemove.dependencies()).forEach(a -> {
+		Arrays.stream(appToRemove.dependencies()).forEach(a -> {
+			System.out.println("Visiting dependency " + a + " of " + appToRemove.uniqueIdentifier());
 			final var dep = this.forName(a);
+			System.out.println(set.contains(dep) + "//" + dep.explicitlyInstalled());
 			//Remove non-explicitly installed packages...
-			if (!ret.contains(dep) && !dep.explicitlyInstalled()) {
+			if (!set.contains(dep) && !dep.explicitlyInstalled()) {
 				final var numberOfDependents = this.numberOfDependents(dep);
 				final var alreadyRemoved =
-					this.installedApps.stream().filter(b -> b.dependsOn(dep)).filter(ret::contains).count();
+					this.installedApps.stream().filter(b -> b.dependsOn(dep)).filter(set::contains).count();
 				//if all apps that depend on it will be uninstalled, too.
 				if (alreadyRemoved == numberOfDependents) {
-					this.getAllRemovablePackages(dep, ret);
+					this.getAllRemovablePackages(dep, set);
 				}
 			}
 		});

@@ -13,7 +13,7 @@ public record InstalledApp(String displayName, String uniqueIdentifier, Installe
 						   boolean explicitlyInstalled, String[] dependencies) {
 
 	public boolean dependsOn(InstalledApp toRemove) {
-		return Arrays.binarySearch(this.dependencies, toRemove.uniqueIdentifier) != -1;
+		return Arrays.stream(this.dependencies).anyMatch(a->a.equals(toRemove.uniqueIdentifier));
 	}
 
 	/**
