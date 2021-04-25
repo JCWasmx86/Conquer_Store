@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class UninstallDependencyResolverTest {
@@ -78,16 +79,43 @@ public class UninstallDependencyResolverTest {
 
 	@Test
 	public void testRemovingWithDependentImplicitAndCleaningUpOfMore() {
-		final var toRemove = this.buildInstalledApp("toRemove1", "dep1");
+		final var toRemove = this.buildInstalledApp("toRemove", "dep1");
 		final var list = new ArrayList<InstalledApp>();
 		list.add(toRemove);
 		list.add(this.buildInstalledApp("dep1"));
-		list.add(this.buildInstalledApp("parent1", "toRemove1", "child1"));
+		list.add(this.buildInstalledApp("parent1", "toRemove", "child1"));
 		list.add(this.buildInstalledApp("child1", "cleanMe"));
 		list.add(this.buildInstalledApp("cleanMe2", true));
 		list.add(this.buildInstalledApp("cleanMe", "cleanMe2"));
 		final var resolver = new UninstallDependencyResolver(toRemove, list);
-		Assert.assertEquals(Set.of("toRemove1", "dep1", "parent1", "child1", "cleanMe"),
+		Assert.assertEquals(Set.of("toRemove", "dep1", "parent1", "child1", "cleanMe"),
+			this.toStringSet(resolver.getAllRemovablePackages()));
+	}
+
+	//These both are ignored, as those are failing, as
+	//the resolver doesn't recognize cycles
+	@Test
+	@Ignore
+	public void testCircles() {
+		final var toRemove = this.buildInstalledApp("toRemove", "dep1");
+		final var list = new ArrayList<InstalledApp>();
+		list.add(toRemove);
+		list.add(this.buildInstalledApp("dep1", "dep2"));
+		list.add(this.buildInstalledApp("dep2", "dep1"));
+		final var resolver = new UninstallDependencyResolver(toRemove, list);
+		Assert.assertEquals(Set.of("toRemove", "dep1", "dep2"),
+			this.toStringSet(resolver.getAllRemovablePackages()));
+	}
+
+	@Test
+	@Ignore
+	public void testCircles2() {
+		final var toRemove = this.buildInstalledApp("toRemove", "dep1");
+		final var list = new ArrayList<InstalledApp>();
+		list.add(toRemove);
+		list.add(this.buildInstalledApp("dep1", "dep1"));
+		final var resolver = new UninstallDependencyResolver(toRemove, list);
+		Assert.assertEquals(Set.of("toRemove", "dep1", "dep2"),
 			this.toStringSet(resolver.getAllRemovablePackages()));
 	}
 
@@ -101,6 +129,6 @@ public class UninstallDependencyResolverTest {
 
 	private InstalledApp buildInstalledApp(final String uniqueName, final boolean explicit,
 										   final String... dependencies) {
-		return new InstalledApp(null, uniqueName, null, explicit, dependencies);
+		return new InstalledApp(null, uniqueName, null, explicit, dependencies, null);
 	}
 }

@@ -10,7 +10,7 @@ import conquer.data.Shared;
  * by the user or as an dependency.
  */
 public record InstalledApp(String displayName, String uniqueIdentifier, InstalledFile[] files,
-						   boolean explicitlyInstalled, String[] dependencies) {
+						   boolean explicitlyInstalled, String[] dependencies, String version) {
 
 	public boolean dependsOn(InstalledApp toRemove) {
 		return Arrays.stream(this.dependencies).anyMatch(a -> a.equals(toRemove.uniqueIdentifier));

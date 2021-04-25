@@ -105,7 +105,7 @@ public class InstallDependencyResolverTest {
 	}
 
 	private InstalledApp buildInstalledApp(final String uniqueName, final String... dependencies) {
-		return new InstalledApp(null, uniqueName, null, false, dependencies);
+		return new InstalledApp(null, uniqueName, null, false, dependencies, null);
 	}
 
 	private AppDescriptor buildAppDescriptor(final String uniqueName, final String... dependencies) {
