@@ -10,8 +10,8 @@ import com.google.gson.Gson;
 import conquer.data.Shared;
 
 public class StoreState {
-	private static String appData = Data.STORE_DATA_DIR + "/apps.json";
-	private static String installedMetaData = Data.STORE_DATA_DIR + "/installed.json";
+	private static final String appData = Data.STORE_DATA_DIR + "/apps.json";
+	private static final String installedMetaData = Data.STORE_DATA_DIR + "/installed.json";
 	private final List<AppDescriptor> descriptors;
 	private final List<URL> urls;
 	private final List<InstalledApp> installedApps;

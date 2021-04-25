@@ -19,9 +19,9 @@ import conquer.data.Shared;
 import conquer.init.InitTask;
 
 public class StoreInitTask implements InitTask {
-	private static String lastUpdated = Data.STORE_DATA_DIR + "/lastUpdated";
-	private static String appData = Data.STORE_DATA_DIR + "/apps.json";
-	private static long REFRESH_DELAY_IN_SECONDS = 60 * 60;
+	private static final String lastUpdated = Data.STORE_DATA_DIR + "/lastUpdated";
+	private static final String appData = Data.STORE_DATA_DIR + "/apps.json";
+	private static final long REFRESH_DELAY_IN_SECONDS = 60 * 60;
 
 	@Override
 	public void initialize() {
