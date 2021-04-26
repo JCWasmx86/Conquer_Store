@@ -1,6 +1,5 @@
 package jcwasmx86.store.data;
 
-import java.io.File;
 import java.util.Set;
 
 public interface InstallationListener {
