@@ -7,7 +7,7 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 public class InstalledAppsState {
-	private Map<String, InstalledApp> apps;
+	private final Map<String, InstalledApp> apps;
 
 	InstalledAppsState(final List<InstalledApp> installedApps) {
 		this.apps = new HashMap<>();

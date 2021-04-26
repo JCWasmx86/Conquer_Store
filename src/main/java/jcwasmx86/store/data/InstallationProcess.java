@@ -21,10 +21,10 @@ public final class InstallationProcess implements Runnable {
 	private final StoreState state;
 	private final String outputDirectory;
 	private boolean finished;
-	private Set<InstalledApp> installedApps;
+	private final Set<InstalledApp> installedApps;
 
 	InstallationProcess(InstallationListener listener, AppDescriptor toInstall,
-							   StoreState state, String outputDirectory) {
+						StoreState state, String outputDirectory) {
 		this.listener = listener;
 		this.toInstall = toInstall;
 		this.state = state;

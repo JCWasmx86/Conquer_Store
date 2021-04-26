@@ -20,7 +20,8 @@ public class InstallDependencyResolverTest {
 		final var availableDescriptors = new ArrayList<AppDescriptor>();
 		availableDescriptors.add(toInstall);
 		availableDescriptors.add(TestUtils.buildAppDescriptor("dep1"));
-		final var resolver = new InstallDependencyResolver(toInstall, new AvailableAppsState(availableDescriptors), null);
+		final var resolver = new InstallDependencyResolver(toInstall, new AvailableAppsState(availableDescriptors),
+			null);
 		Assert.assertEquals(Set.of("toInstall", "dep1"), resolver.buildDependencySet());
 	}
 
@@ -31,7 +32,8 @@ public class InstallDependencyResolverTest {
 		availableDescriptors.add(toInstall);
 		availableDescriptors.add(TestUtils.buildAppDescriptor("dep1", "dep2"));
 		availableDescriptors.add(TestUtils.buildAppDescriptor("dep2"));
-		final var resolver = new InstallDependencyResolver(toInstall, new AvailableAppsState(availableDescriptors), null);
+		final var resolver = new InstallDependencyResolver(toInstall, new AvailableAppsState(availableDescriptors),
+			null);
 		Assert.assertEquals(Set.of("toInstall", "dep1", "dep2"), resolver.buildDependencySet());
 	}
 
@@ -42,7 +44,8 @@ public class InstallDependencyResolverTest {
 		availableDescriptors.add(toInstall);
 		availableDescriptors.add(TestUtils.buildAppDescriptor("dep1", "dep2"));
 		availableDescriptors.add(TestUtils.buildAppDescriptor("dep2", "dep3"));
-		final var resolver = new InstallDependencyResolver(toInstall, new AvailableAppsState(availableDescriptors), null);
+		final var resolver = new InstallDependencyResolver(toInstall, new AvailableAppsState(availableDescriptors),
+			null);
 		Assert.assertEquals(Set.of("toInstall", "dep1", "dep2"), resolver.buildDependencySet());
 	}
 
@@ -53,7 +56,8 @@ public class InstallDependencyResolverTest {
 		availableDescriptors.add(toInstall);
 		availableDescriptors.add(TestUtils.buildAppDescriptor("dep1", "dep2"));
 		availableDescriptors.add(TestUtils.buildAppDescriptor("dep2", "dep1"));
-		final var resolver = new InstallDependencyResolver(toInstall, new AvailableAppsState(availableDescriptors), null);
+		final var resolver = new InstallDependencyResolver(toInstall, new AvailableAppsState(availableDescriptors),
+			null);
 		Assert.assertEquals(Set.of("toInstall", "dep1", "dep2"), resolver.buildDependencySet());
 	}
 
@@ -65,7 +69,8 @@ public class InstallDependencyResolverTest {
 		availableDescriptors.add(TestUtils.buildAppDescriptor("dep1", "dep2"));
 		availableDescriptors.add(TestUtils.buildAppDescriptor("dep2", "dep3"));
 		availableDescriptors.add(TestUtils.buildAppDescriptor("dep3", "dep1"));
-		final var resolver = new InstallDependencyResolver(toInstall, new AvailableAppsState(availableDescriptors), null);
+		final var resolver = new InstallDependencyResolver(toInstall, new AvailableAppsState(availableDescriptors),
+			null);
 		Assert.assertEquals(Set.of("toInstall", "dep1", "dep2", "dep3"), resolver.buildDependencySet());
 	}
 

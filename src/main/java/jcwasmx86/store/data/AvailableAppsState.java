@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Optional;
 
 public class AvailableAppsState {
-	private Map<String, AppDescriptor> map;
+	private final Map<String, AppDescriptor> map;
 
 	AvailableAppsState(final List<AppDescriptor> descriptors) {
 		this.map = new HashMap<>();

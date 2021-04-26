@@ -8,9 +8,9 @@ import jcwasmx86.store.data.InstalledApp.InstalledFile;
 
 public class UninstallProcess implements Runnable {
 
-	private UninstallListener listener;
-	private InstalledAppsState apps;
-	private InstalledApp toRemove;
+	private final UninstallListener listener;
+	private final InstalledAppsState apps;
+	private final InstalledApp toRemove;
 	private boolean finished;
 	private Set<InstalledApp> appsToRemove;
 

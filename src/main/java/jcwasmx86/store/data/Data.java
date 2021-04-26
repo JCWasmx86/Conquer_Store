@@ -23,6 +23,7 @@ public final class Data {
 	private Data() {
 		throw new UnsupportedOperationException();
 	}
+
 	static List<URL> collectURLs() {
 		final var urls = new ArrayList<URL>();
 		try (final var br = new BufferedReader(new FileReader(Data.STORE_URLS_FILE))) {
