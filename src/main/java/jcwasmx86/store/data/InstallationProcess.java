@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -12,9 +13,24 @@ import java.util.Set;
 import java.util.zip.ZipFile;
 
 import conquer.data.Shared;
+import jcwasmx86.store.data.InstalledApp.InstalledFile;
 
-public record InstallationProcess(InstallationListener listener, AppDescriptor toInstall,
-								  StoreState state, String outputDirectory) implements Runnable {
+public final class InstallationProcess implements Runnable {
+	private final InstallationListener listener;
+	private final AppDescriptor toInstall;
+	private final StoreState state;
+	private final String outputDirectory;
+	private boolean finished;
+	private Set<InstalledApp> installedApps;
+
+	public InstallationProcess(InstallationListener listener, AppDescriptor toInstall,
+							   StoreState state, String outputDirectory) {
+		this.listener = listener;
+		this.toInstall = toInstall;
+		this.state = state;
+		this.outputDirectory = outputDirectory;
+		this.installedApps = new HashSet<>();
+	}
 
 	@Override
 	public void run() {
@@ -31,6 +47,7 @@ public record InstallationProcess(InstallationListener listener, AppDescriptor t
 		final var extractingDirectory = this.makeDownloadFolder(startTime + 1);
 		this.extract(extractingDirectory, files);
 		this.copyFilesIntoFinalDestination(extractingDirectory);
+		this.finished = true;
 	}
 
 	private void copyFilesIntoFinalDestination(final File source) {
@@ -79,19 +96,24 @@ public record InstallationProcess(InstallationListener listener, AppDescriptor t
 	private void extract(File extractingDirectory, Map<AppDescriptor, File> files) {
 		var cnter = 0;
 		for (final var entry : files.entrySet()) {
+			final var set = new HashSet<InstalledFile>();
 			final var file = entry.getValue();
 			final var descriptor = entry.getKey();
-			this.extractZip(extractingDirectory, file);
+			this.extractZip(extractingDirectory, file, set);
 			this.listener.afterExtracting(descriptor, cnter, files.size());
 			cnter++;
+			this.installedApps.add(new InstalledApp(descriptor.name(), descriptor.uniqueIdentifier(),
+				set.toArray(new InstalledFile[0]), descriptor == this.toInstall,
+				Arrays.copyOf(descriptor.dependencies(), descriptor.dependencies().length), descriptor.version()));
 		}
 	}
 
-	private void extractZip(File extractingDirectory, File file) {
+	private void extractZip(File extractingDirectory, File file, Set<InstalledFile> set) {
 		try (ZipFile zis = new ZipFile(file)) {
 			var entries = zis.entries();
 			while (entries.hasMoreElements()) {
 				final var entry = entries.nextElement();
+				set.add(new InstalledFile(entry.getName()));
 				final var outputFile = new File(extractingDirectory, entry.getName());
 				if (outputFile.exists()) {
 					throw new AppInstallFailedException(outputFile + " already exists!");
@@ -146,6 +168,18 @@ public record InstallationProcess(InstallationListener listener, AppDescriptor t
 			return Files.createTempDirectory("starttime_" + startTime).toFile();
 		} catch (IOException e) {
 			throw new AppInstallFailedException(e);
+		}
+	}
+
+	public boolean isFinished() {
+		return finished;
+	}
+
+	public Set<InstalledApp> installedApps() {
+		if (this.finished) {
+			return this.installedApps;
+		} else {
+			throw new UnsupportedOperationException("Not finished yet!");
 		}
 	}
 }

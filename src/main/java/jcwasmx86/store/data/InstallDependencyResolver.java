@@ -2,11 +2,10 @@ package jcwasmx86.store.data;
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public record InstallDependencyResolver(AppDescriptor appToInstall, List<AppDescriptor> allAvailableDescriptors,
+public record InstallDependencyResolver(AppDescriptor appToInstall, AvailableAppsState allAvailableDescriptors,
 										InstalledAppsState installedApps) {
 
 	Set<String> buildDependencySet() {
@@ -19,13 +18,12 @@ public record InstallDependencyResolver(AppDescriptor appToInstall, List<AppDesc
 		ret.add(appToInstall.uniqueIdentifier());
 		Arrays.stream(appToInstall.dependencies()).forEach(a -> {
 			if (!ret.contains(a)) {
-				final var matchingDescriptors =
-					this.allAvailableDescriptors.stream().filter(desc -> desc.uniqueIdentifier().equals(a)).toList();
+				final var matchingDescriptors = this.allAvailableDescriptors.getForName(a);
 				if (matchingDescriptors.isEmpty()) {
 					throw new ResolutionFailedException("Dependency " + a + " of " + appToInstall.uniqueIdentifier() +
 						" failed to resolve!");
 				}
-				this.buildDependencySet(matchingDescriptors.get(0), ret);
+				this.buildDependencySet(matchingDescriptors.get(), ret);
 			}
 		});
 	}
@@ -34,11 +32,7 @@ public record InstallDependencyResolver(AppDescriptor appToInstall, List<AppDesc
 		return this.buildDependencySet().stream()
 			//Remove all that are already installed
 			.filter(a -> !this.installedApps.isInstalled(a))
-			.map(this::forName)
+			.map(this.allAvailableDescriptors::forName)
 			.collect(Collectors.toSet());
-	}
-
-	private AppDescriptor forName(final String name) {
-		return this.allAvailableDescriptors.stream().filter(a -> a.uniqueIdentifier().equals(name)).findFirst().get();
 	}
 }

@@ -12,12 +12,12 @@ import conquer.data.Shared;
 public class StoreState {
 	private static final String appData = Data.STORE_DATA_DIR + "/apps.json";
 	private static final String installedMetaData = Data.STORE_DATA_DIR + "/installed.json";
-	private final List<AppDescriptor> descriptors;
+	private final AvailableAppsState descriptors;
 	private final List<URL> urls;
 	private final InstalledAppsState installedApps;
 
 	StoreState(final AppDescriptor[] descriptors, final List<URL> urls, final InstalledApp[] installedApps) {
-		this.descriptors = Arrays.asList(descriptors);
+		this.descriptors = new AvailableAppsState(Arrays.asList(descriptors));
 		this.urls = urls;
 		this.installedApps = new InstalledAppsState(Arrays.asList(installedApps));
 	}
@@ -39,7 +39,7 @@ public class StoreState {
 		return new StoreState(descriptors, urls, installedApps);
 	}
 
-	public List<AppDescriptor> getDescriptors() {
+	public AvailableAppsState getDescriptors() {
 		return descriptors;
 	}
 
@@ -49,9 +49,5 @@ public class StoreState {
 
 	public InstalledAppsState getInstalledApps() {
 		return installedApps;
-	}
-
-	private AppDescriptor forName(final String unique) {
-		return this.descriptors.stream().filter(a -> a.uniqueIdentifier().equals(unique)).findFirst().get();
 	}
 }
