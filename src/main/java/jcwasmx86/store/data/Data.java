@@ -12,7 +12,7 @@ import java.util.Objects;
 
 import conquer.data.Shared;
 
-public class Data {
+public final class Data {
 	static final String STORE_DATA_DIR = Shared.BASE_DIRECTORY + "/jcwasmx86.store";
 	static final String STORE_URLS_FILE = Data.STORE_DATA_DIR + "/urls";
 
@@ -20,6 +20,9 @@ public class Data {
 		new File(Data.STORE_DATA_DIR).mkdirs();
 	}
 
+	private Data() {
+		throw new UnsupportedOperationException();
+	}
 	static List<URL> collectURLs() {
 		final var urls = new ArrayList<URL>();
 		try (final var br = new BufferedReader(new FileReader(Data.STORE_URLS_FILE))) {
