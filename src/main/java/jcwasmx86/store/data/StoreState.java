@@ -50,4 +50,12 @@ public class StoreState {
 	public InstalledAppsState getInstalledApps() {
 		return installedApps;
 	}
+
+	public void install(final AppDescriptor descriptor, final InstallationListener listener) {
+		final var installProgress = new InstallationProcess(listener, descriptor, this, Shared.BASE_DIRECTORY);
+		new Thread(installProgress).start();
+		if(installProgress.isFinished()) {
+			this.installedApps.addAll(installProgress.installedApps());
+		}
+	}
 }
