@@ -13,8 +13,9 @@ public class UninstallDependencyResolverTest {
 	@Test
 	public void testRemovingWithoutDependencies() {
 		final var toRemove = TestUtils.buildInstalledApp("toRemove");
-		final var resolver = new UninstallDependencyResolver(toRemove, List.of(toRemove));
-		Assert.assertEquals(Set.of("toRemove"), TestUtils.installedAppsToStringSet(resolver.getAllRemovablePackages()));
+		final var resolver = new UninstallDependencyResolver(toRemove, new InstalledAppsState(List.of(toRemove)));
+		Assert.assertEquals(Set.of("toRemove"),
+			TestUtils.installedAppsToStringSet(resolver.getAllRemovablePackages()));
 	}
 
 	@Test
@@ -23,8 +24,9 @@ public class UninstallDependencyResolverTest {
 		final var list = new ArrayList<InstalledApp>();
 		list.add(toRemove);
 		list.add(TestUtils.buildInstalledApp("dep1"));
-		final var resolver = new UninstallDependencyResolver(toRemove, list);
-		Assert.assertEquals(Set.of("toRemove", "dep1"), TestUtils.installedAppsToStringSet(resolver.getAllRemovablePackages()));
+		final var resolver = new UninstallDependencyResolver(toRemove, new InstalledAppsState(list));
+		Assert.assertEquals(Set.of("toRemove", "dep1"),
+			TestUtils.installedAppsToStringSet(resolver.getAllRemovablePackages()));
 	}
 
 	@Test
@@ -33,8 +35,9 @@ public class UninstallDependencyResolverTest {
 		final var list = new ArrayList<InstalledApp>();
 		list.add(toRemove);
 		list.add(TestUtils.buildInstalledApp("dep1", true));
-		final var resolver = new UninstallDependencyResolver(toRemove, list);
-		Assert.assertEquals(Set.of("toRemove"), TestUtils.installedAppsToStringSet(resolver.getAllRemovablePackages()));
+		final var resolver = new UninstallDependencyResolver(toRemove, new InstalledAppsState(list));
+		Assert.assertEquals(Set.of("toRemove"),
+			TestUtils.installedAppsToStringSet(resolver.getAllRemovablePackages()));
 	}
 
 	@Test
@@ -44,7 +47,7 @@ public class UninstallDependencyResolverTest {
 		list.add(toRemove);
 		list.add(TestUtils.buildInstalledApp("dep1"));
 		list.add(TestUtils.buildInstalledApp("parent1", "toRemove"));
-		final var resolver = new UninstallDependencyResolver(toRemove, list);
+		final var resolver = new UninstallDependencyResolver(toRemove, new InstalledAppsState(list));
 		Assert.assertEquals(Set.of("toRemove", "dep1", "parent1"),
 			TestUtils.installedAppsToStringSet(resolver.getAllRemovablePackages()));
 	}
@@ -57,7 +60,7 @@ public class UninstallDependencyResolverTest {
 		list.add(TestUtils.buildInstalledApp("dep1"));
 		list.add(TestUtils.buildInstalledApp("parent1", "toRemove", "child1"));
 		list.add(TestUtils.buildInstalledApp("child1"));
-		final var resolver = new UninstallDependencyResolver(toRemove, list);
+		final var resolver = new UninstallDependencyResolver(toRemove, new InstalledAppsState(list));
 		Assert.assertEquals(Set.of("toRemove", "dep1", "parent1", "child1"),
 			TestUtils.installedAppsToStringSet(resolver.getAllRemovablePackages()));
 	}
@@ -71,7 +74,7 @@ public class UninstallDependencyResolverTest {
 		list.add(TestUtils.buildInstalledApp("parent1", "toRemove", "child1"));
 		list.add(TestUtils.buildInstalledApp("child1", "cleanMe"));
 		list.add(TestUtils.buildInstalledApp("cleanMe"));
-		final var resolver = new UninstallDependencyResolver(toRemove, list);
+		final var resolver = new UninstallDependencyResolver(toRemove, new InstalledAppsState(list));
 		Assert.assertEquals(Set.of("toRemove", "dep1", "parent1", "child1", "cleanMe"),
 			TestUtils.installedAppsToStringSet(resolver.getAllRemovablePackages()));
 	}
@@ -86,7 +89,7 @@ public class UninstallDependencyResolverTest {
 		list.add(TestUtils.buildInstalledApp("child1", "cleanMe"));
 		list.add(TestUtils.buildInstalledApp("cleanMe2", true));
 		list.add(TestUtils.buildInstalledApp("cleanMe", "cleanMe2"));
-		final var resolver = new UninstallDependencyResolver(toRemove, list);
+		final var resolver = new UninstallDependencyResolver(toRemove, new InstalledAppsState(list));
 		Assert.assertEquals(Set.of("toRemove", "dep1", "parent1", "child1", "cleanMe"),
 			TestUtils.installedAppsToStringSet(resolver.getAllRemovablePackages()));
 	}
@@ -101,7 +104,7 @@ public class UninstallDependencyResolverTest {
 		list.add(toRemove);
 		list.add(TestUtils.buildInstalledApp("dep1", "dep2"));
 		list.add(TestUtils.buildInstalledApp("dep2", "dep1"));
-		final var resolver = new UninstallDependencyResolver(toRemove, list);
+		final var resolver = new UninstallDependencyResolver(toRemove, new InstalledAppsState(list));
 		Assert.assertEquals(Set.of("toRemove", "dep1", "dep2"),
 			TestUtils.installedAppsToStringSet(resolver.getAllRemovablePackages()));
 	}
@@ -113,7 +116,7 @@ public class UninstallDependencyResolverTest {
 		final var list = new ArrayList<InstalledApp>();
 		list.add(toRemove);
 		list.add(TestUtils.buildInstalledApp("dep1", "dep1"));
-		final var resolver = new UninstallDependencyResolver(toRemove, list);
+		final var resolver = new UninstallDependencyResolver(toRemove, new InstalledAppsState(list));
 		Assert.assertEquals(Set.of("toRemove", "dep1", "dep2"),
 			TestUtils.installedAppsToStringSet(resolver.getAllRemovablePackages()));
 	}

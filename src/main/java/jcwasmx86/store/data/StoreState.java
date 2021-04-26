@@ -14,12 +14,12 @@ public class StoreState {
 	private static final String installedMetaData = Data.STORE_DATA_DIR + "/installed.json";
 	private final List<AppDescriptor> descriptors;
 	private final List<URL> urls;
-	private final List<InstalledApp> installedApps;
+	private final InstalledAppsState installedApps;
 
 	StoreState(final AppDescriptor[] descriptors, final List<URL> urls, final InstalledApp[] installedApps) {
 		this.descriptors = Arrays.asList(descriptors);
 		this.urls = urls;
-		this.installedApps = Arrays.asList(installedApps);
+		this.installedApps = new InstalledAppsState(Arrays.asList(installedApps));
 	}
 
 	public static StoreState obtain() {
@@ -47,7 +47,7 @@ public class StoreState {
 		return urls;
 	}
 
-	public List<InstalledApp> getInstalledApps() {
+	public InstalledAppsState getInstalledApps() {
 		return installedApps;
 	}
 

@@ -2,10 +2,9 @@ package jcwasmx86.store.data;
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-public record UninstallDependencyResolver(InstalledApp toRemove, List<InstalledApp> installedApps) {
+public record UninstallDependencyResolver(InstalledApp toRemove, InstalledAppsState installedApps) {
 	Set<InstalledApp> getAllRemovablePackages() {
 		final var ret = new HashSet<InstalledApp>();
 		this.getAllRemovablePackages(this.toRemove, ret);
@@ -22,7 +21,7 @@ public record UninstallDependencyResolver(InstalledApp toRemove, List<InstalledA
 			}
 		});
 		Arrays.stream(appToRemove.dependencies()).forEach(a -> {
-			final var dep = this.forName(a);
+			final var dep = this.installedApps.getForName(a);
 			//Remove non-explicitly installed packages...
 			if (!set.contains(dep) && !dep.explicitlyInstalled()) {
 				final var numberOfDependents = this.numberOfDependents(dep);
@@ -38,9 +37,5 @@ public record UninstallDependencyResolver(InstalledApp toRemove, List<InstalledA
 
 	private long numberOfDependents(final InstalledApp app) {
 		return this.installedApps.stream().filter(a -> a.dependsOn(app)).count();
-	}
-
-	private InstalledApp forName(final String s) {
-		return this.installedApps.stream().filter(a -> a.uniqueIdentifier().equals(s)).findFirst().get();
 	}
 }

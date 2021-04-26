@@ -7,7 +7,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public record InstallDependencyResolver(AppDescriptor appToInstall, List<AppDescriptor> allAvailableDescriptors,
-										List<InstalledApp> installedApps) {
+										InstalledAppsState installedApps) {
 
 	Set<String> buildDependencySet() {
 		final var ret = new HashSet<String>();
@@ -33,7 +33,7 @@ public record InstallDependencyResolver(AppDescriptor appToInstall, List<AppDesc
 	Set<AppDescriptor> appsToInstall() {
 		return this.buildDependencySet().stream()
 			//Remove all that are already installed
-			.filter(a -> this.installedApps.stream().noneMatch(b -> b.uniqueIdentifier().equals(a)))
+			.filter(a -> !this.installedApps.isInstalled(a))
 			.map(this::forName)
 			.collect(Collectors.toSet());
 	}
