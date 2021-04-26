@@ -13,8 +13,8 @@ import java.util.Objects;
 import conquer.data.Shared;
 
 public class Data {
-	static String STORE_DATA_DIR = Shared.BASE_DIRECTORY + "/jcwasmx86.store";
-	static String STORE_URLS_FILE = Data.STORE_DATA_DIR + "/urls";
+	static final String STORE_DATA_DIR = Shared.BASE_DIRECTORY + "/jcwasmx86.store";
+	static final String STORE_URLS_FILE = Data.STORE_DATA_DIR + "/urls";
 
 	static {
 		new File(Data.STORE_DATA_DIR).mkdirs();

@@ -63,6 +63,9 @@ public record InstallationProcess(InstallationListener listener, AppDescriptor t
 			files.add(source.getAbsoluteFile());
 		} else {
 			final var children = source.listFiles();
+			if (children == null) {
+				return;
+			}
 			for (final var child : children) {
 				if (child.isFile()) {
 					files.add(child.getAbsoluteFile());
