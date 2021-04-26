@@ -23,7 +23,7 @@ public final class InstallationProcess implements Runnable {
 	private boolean finished;
 	private Set<InstalledApp> installedApps;
 
-	public InstallationProcess(InstallationListener listener, AppDescriptor toInstall,
+	InstallationProcess(InstallationListener listener, AppDescriptor toInstall,
 							   StoreState state, String outputDirectory) {
 		this.listener = listener;
 		this.toInstall = toInstall;
@@ -104,7 +104,7 @@ public final class InstallationProcess implements Runnable {
 			cnter++;
 			this.installedApps.add(new InstalledApp(descriptor.name(), descriptor.uniqueIdentifier(),
 				set.toArray(new InstalledFile[0]), descriptor == this.toInstall,
-				Arrays.copyOf(descriptor.dependencies(), descriptor.dependencies().length), descriptor.version()));
+				Arrays.copyOf(descriptor.dependencies(), descriptor.dependencies().length), descriptor.version(), 0));
 		}
 	}
 

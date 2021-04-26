@@ -52,10 +52,22 @@ public class StoreState {
 	}
 
 	public void install(final AppDescriptor descriptor, final InstallationListener listener) {
-		final var installProgress = new InstallationProcess(listener, descriptor, this, Shared.BASE_DIRECTORY);
-		new Thread(installProgress).start();
-		if(installProgress.isFinished()) {
-			this.installedApps.addAll(installProgress.installedApps());
-		}
+		final var installationProcess = new InstallationProcess(listener, descriptor, this, Shared.BASE_DIRECTORY);
+		new Thread(() -> {
+			installationProcess.run();
+			if (installationProcess.isFinished()) {
+				this.installedApps.addAll(installationProcess.installedApps());
+			}
+		}).start();
+	}
+
+	public void uninstall(final InstalledApp app, final UninstallListener listener) {
+		final var uninstallProgress = new UninstallProcess(listener, this.installedApps, app);
+		new Thread(() -> {
+			uninstallProgress.run();
+			if (uninstallProgress.isFinished()) {
+				this.installedApps.removeAll(uninstallProgress.getRemovedApps());
+			}
+		}).start();
 	}
 }

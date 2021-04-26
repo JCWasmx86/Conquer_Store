@@ -29,4 +29,8 @@ public class InstalledAppsState {
 	void addAll(final Set<InstalledApp> installedApps) {
 		installedApps.forEach(a -> this.apps.put(a.uniqueIdentifier(), a));
 	}
+
+	void removeAll(final Set<InstalledApp> removedApps) {
+		removedApps.forEach(a -> this.apps.remove(a.uniqueIdentifier()));
+	}
 }

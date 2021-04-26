@@ -22,7 +22,7 @@ final class TestUtils {
 
 	static InstalledApp buildInstalledApp(final String uniqueName, final boolean explicit,
 										  final String... dependencies) {
-		return new InstalledApp(null, uniqueName, null, explicit, dependencies, null);
+		return new InstalledApp(null, uniqueName, null, explicit, dependencies, null, 0);
 	}
 
 	static AppDescriptor buildAppDescriptor(final String uniqueName, final String... dependencies) {
