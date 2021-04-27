@@ -28,7 +28,8 @@ public class StoreInitTask implements InitTask {
 	public void initialize() {
 		final var lastUpdated = readLastUpdated();
 		final var now = Instant.now().getEpochSecond();
-		if (Math.abs(now - lastUpdated) < StoreInitTask.REFRESH_DELAY_IN_SECONDS) {
+		if (Math.abs(now - lastUpdated) < StoreInitTask.REFRESH_DELAY_IN_SECONDS && !Boolean.getBoolean("jcwasmx86" +
+			".store.force")) {
 			return;
 		}
 		final var urls = Data.collectURLs();
@@ -68,6 +69,7 @@ public class StoreInitTask implements InitTask {
 					ret.addAll(Arrays.asList(descriptors));
 				} catch (IOException e) {
 					Shared.LOGGER.exception(e);
+					e.printStackTrace();
 				}
 			} catch (MalformedURLException e) {
 				Shared.LOGGER.exception(e);

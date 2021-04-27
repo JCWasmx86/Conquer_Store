@@ -1,6 +1,6 @@
 [
 	{
-		"downloadBundle": "localhost:32451/_res/0.zip",
+		"downloadBundle": "http://localhost:32451/_res/0.zip",
 		"uniqueIdentifier": "0",
 		"installedSize": 2,
 		"description": "0",
@@ -16,7 +16,7 @@
 		}
 	},
 	{
-		"downloadBundle": "localhost:32451/_res/1.zip",
+		"downloadBundle": "http://localhost:32451/_res/1.zip",
 		"uniqueIdentifier": "1",
 		"installedSize": 2,
 		"description": "1",
@@ -32,7 +32,7 @@
 		}
 	},
 	{
-		"downloadBundle": "localhost:32451/_res/2.zip",
+		"downloadBundle": "http://localhost:32451/_res/2.zip",
 		"uniqueIdentifier": "2",
 		"installedSize": 2,
 		"description": "2",
@@ -48,7 +48,7 @@
 		}
 	},
 	{
-		"downloadBundle": "localhost:32451/_res/3.zip",
+		"downloadBundle": "http://localhost:32451/_res/3.zip",
 		"uniqueIdentifier": "3",
 		"installedSize": 2,
 		"description": "3",
@@ -64,7 +64,7 @@
 		}
 	},
 	{
-		"downloadBundle": "localhost:32451/_res/4.zip",
+		"downloadBundle": "http://localhost:32451/_res/4.zip",
 		"uniqueIdentifier": "4",
 		"installedSize": 2,
 		"description": "4",
@@ -80,7 +80,7 @@
 		}
 	},
 	{
-		"downloadBundle": "localhost:32451/_res/5.zip",
+		"downloadBundle": "http://localhost:32451/_res/5.zip",
 		"uniqueIdentifier": "5",
 		"installedSize": 2,
 		"description": "5",
@@ -96,7 +96,7 @@
 		}
 	},
 	{
-		"downloadBundle": "localhost:32451/_res/6.zip",
+		"downloadBundle": "http://localhost:32451/_res/6.zip",
 		"uniqueIdentifier": "6",
 		"installedSize": 2,
 		"description": "6",
@@ -112,7 +112,7 @@
 		}
 	},
 	{
-		"downloadBundle": "localhost:32451/_res/7.zip",
+		"downloadBundle": "http://localhost:32451/_res/7.zip",
 		"uniqueIdentifier": "7",
 		"installedSize": 2,
 		"description": "7",
@@ -128,7 +128,7 @@
 		}
 	},
 	{
-		"downloadBundle": "localhost:32451/_res/0.zip",
+		"downloadBundle": "http://localhost:32451/_res/0.zip",
 		"uniqueIdentifier": "0",
 		"installedSize": 2,
 		"description": "0",
@@ -144,7 +144,7 @@
 		}
 	},
 	{
-		"downloadBundle": "localhost:32451/_res/8.zip",
+		"downloadBundle": "http://localhost:32451/_res/8.zip",
 		"uniqueIdentifier": "8",
 		"installedSize": 2,
 		"description": "8",
@@ -160,7 +160,7 @@
 		}
 	},
 	{
-		"downloadBundle": "localhost:32451/_res/9.zip",
+		"downloadBundle": "http://localhost:32451/_res/9.zip",
 		"uniqueIdentifier": "9",
 		"installedSize": 2,
 		"description": "9",
@@ -176,7 +176,7 @@
 		}
 	},
 	{
-		"downloadBundle": "localhost:32451/_res/10.zip",
+		"downloadBundle": "http://localhost:32451/_res/10.zip",
 		"uniqueIdentifier": "10",
 		"installedSize": 2,
 		"description": "10",
@@ -192,7 +192,7 @@
 		}
 	},
 	{
-		"downloadBundle": "localhost:32451/_res/11.zip",
+		"downloadBundle": "http://localhost:32451/_res/11.zip",
 		"uniqueIdentifier": "11",
 		"installedSize": 2,
 		"description": "11",
@@ -208,7 +208,7 @@
 		}
 	},
 	{
-		"downloadBundle": "localhost:32451/_res/12.zip",
+		"downloadBundle": "http://localhost:32451/_res/12.zip",
 		"uniqueIdentifier": "12",
 		"installedSize": 2,
 		"description": "12",
@@ -224,7 +224,7 @@
 		}
 	},
 	{
-		"downloadBundle": "localhost:32451/_res/13.zip",
+		"downloadBundle": "http://localhost:32451/_res/13.zip",
 		"uniqueIdentifier": "13",
 		"installedSize": 2,
 		"description": "13",
@@ -240,7 +240,7 @@
 		}
 	},
 	{
-		"downloadBundle": "localhost:32451/_res/14.zip",
+		"downloadBundle": "http://localhost:32451/_res/14.zip",
 		"uniqueIdentifier": "14",
 		"installedSize": 2,
 		"description": "14",
@@ -256,7 +256,7 @@
 		}
 	},
 	{
-		"downloadBundle": "localhost:32451/_res/15.zip",
+		"downloadBundle": "http://localhost:32451/_res/15.zip",
 		"uniqueIdentifier": "15",
 		"installedSize": 2,
 		"description": "15",

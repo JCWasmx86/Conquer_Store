@@ -20,8 +20,8 @@ public final class InstallationProcess implements Runnable {
 	private final AppDescriptor toInstall;
 	private final StoreState state;
 	private final String outputDirectory;
-	private boolean finished;
 	private final Set<InstalledApp> installedApps;
+	private boolean finished;
 
 	InstallationProcess(InstallationListener listener, AppDescriptor toInstall,
 						StoreState state, String outputDirectory) {
@@ -122,8 +122,7 @@ public final class InstallationProcess implements Runnable {
 				}
 				outputFile.getParentFile().mkdirs();
 				try (final var in = zis.getInputStream(entry)) {
-					Files.copy(in, Paths.get(outputFile.toURI()),
-						StandardCopyOption.COPY_ATTRIBUTES);
+					Files.copy(in, Paths.get(outputFile.toURI()));
 				}
 			}
 		} catch (IOException e) {
@@ -150,6 +149,7 @@ public final class InstallationProcess implements Runnable {
 		final var map = new HashMap<AppDescriptor, File>();
 		var cnter = 0;
 		for (final var app : toInstall) {
+			System.out.println(app.downloadBundle());
 			try (final var in = app.downloadBundle().openStream()) {
 				final var file = new File(downloadFolder, app.uniqueIdentifier() + "__.zip");
 				Files.copy(in, Paths.get(file.toURI()), StandardCopyOption.REPLACE_EXISTING);

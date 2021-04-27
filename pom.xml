@@ -72,6 +72,10 @@
 				<configuration>
 					<argLine>--enable-preview</argLine>
 					<trimStackTrace>false</trimStackTrace>
+					<systemPropertyVariables>
+						<conquer.appdata.default>test_dir</conquer.appdata.default>
+						<user.home>test_dir</user.home>
+					</systemPropertyVariables>
 				</configuration>
 			</plugin>
 			<plugin>
