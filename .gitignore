@@ -1,1 +1,5 @@
 /target/
+./test_dir/.config/.conquer/jcwasmx86.store/installed.json
+./test_dir/.config/.conquer/jcwasmx86.store/apps.json
+./test_dir/.config/.conquer/jcwasmx86.store/lastUpdated
+./test_dir/.config/.conquer/lib/
