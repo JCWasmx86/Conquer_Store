@@ -52,22 +52,21 @@ public class StoreState {
 	}
 
 	public void install(final AppDescriptor descriptor, final InstallationListener listener) {
+		if (this.getInstalledApps().isInstalled(descriptor.uniqueIdentifier())) {
+			throw new AppInstallFailedException(descriptor.uniqueIdentifier() + " is already installed!");
+		}
 		final var installationProcess = new InstallationProcess(listener, descriptor, this, Shared.BASE_DIRECTORY);
-		new Thread(() -> {
-			installationProcess.run();
-			if (installationProcess.isFinished()) {
-				this.installedApps.addAll(installationProcess.installedApps());
-			}
-		}).start();
+		installationProcess.run();
+		if (installationProcess.isFinished()) {
+			this.installedApps.addAll(installationProcess.installedApps());
+		}
 	}
 
 	public void uninstall(final InstalledApp app, final UninstallListener listener) {
 		final var uninstallProgress = new UninstallProcess(listener, this.installedApps, app);
-		new Thread(() -> {
-			uninstallProgress.run();
-			if (uninstallProgress.isFinished()) {
-				this.installedApps.removeAll(uninstallProgress.getRemovedApps());
-			}
-		}).start();
+		uninstallProgress.run();
+		if (uninstallProgress.isFinished()) {
+			this.installedApps.removeAll(uninstallProgress.getRemovedApps());
+		}
 	}
 }

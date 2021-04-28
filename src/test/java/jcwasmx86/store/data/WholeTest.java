@@ -23,7 +23,7 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class WholeTest {
+public class WholeTest implements InstallationListener {
 	private static WebServer server;
 
 	@BeforeClass
@@ -85,7 +85,7 @@ public class WholeTest {
 	}
 
 	@Test
-	public void initialize() {
+	public void runTests() {
 		final var state = StoreState.obtain();
 		state.install(state.getDescriptors().forName("0"), new InstallationListener() {
 			@Override
@@ -113,6 +113,71 @@ public class WholeTest {
 
 			}
 		});
+		this.tryInstallingTwice(state);
+		this.tryUninstalling(state);
+		this.tryUninstallingTwice(state);
+	}
+
+	private void tryUninstallingTwice(StoreState state) {
+		try {
+			this.tryUninstalling(state);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return;
+		}
+		Assert.fail("Could uninstall \"0\" twice!");
+	}
+
+	private void tryInstallingTwice(final StoreState state) {
+		try {
+			state.install(state.getDescriptors().forName("0"), this);
+		} catch (final AppInstallFailedException aife) {
+			//Expected
+			System.out.println(aife.getMessage());
+			return;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		Assert.fail("Could install \"0\" twice!");
+	}
+
+	private void tryUninstalling(final StoreState state) {
+		state.uninstall(state.getInstalledApps().getForName("0"), new UninstallListener() {
+			@Override
+			public boolean onAppsCollected(Set<InstalledApp> appsToRemove) {
+				return true;
+			}
+
+			@Override
+			public void deletingFile(String fileName, int number, int numberOfFiles) {
+
+			}
+		});
+	}
+
+	@Override
+	public boolean onAppsCollected(Set<AppDescriptor> toInstall) {
+		return true;
+	}
+
+	@Override
+	public void onDownload(AppDescriptor downloaded, int number, int maximum) {
+
+	}
+
+	@Override
+	public void afterCheckingChecksum(AppDescriptor checked, int number, int maximum) {
+
+	}
+
+	@Override
+	public void afterExtracting(AppDescriptor from, int numberOfFile, int numberOfFiles) {
+
+	}
+
+	@Override
+	public void copy(String fileName, int numberOfFile, int numberOfFiles) {
+
 	}
 
 	private static class WebServer implements Runnable, HttpHandler {
