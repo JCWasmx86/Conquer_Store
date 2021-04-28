@@ -4,12 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.Comparator;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -28,7 +28,7 @@ public class WholeTest {
 
 	@BeforeClass
 	public static void setupEverything() {
-		resetup();
+		WholeTest.resetup();
 		server = new WebServer();
 		new Thread(server).start();
 		System.setProperty("jcwasmx86.store.force", "true");
@@ -50,11 +50,11 @@ public class WholeTest {
 		final var dirBase = new File(base, "jcwasmx86.store").getAbsolutePath();
 		new File(dirBase).mkdirs();
 		try {
-			Files.write(Paths.get(dirBase, "installed.json"), "[]".getBytes(StandardCharsets.UTF_8),
+			Files.writeString(Paths.get(dirBase, "installed.json"), "[]",
 				StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
-			Files.write(Paths.get(dirBase, "apps.json"), "[]".getBytes(StandardCharsets.UTF_8),
+			Files.writeString(Paths.get(dirBase, "apps.json"), "[]",
 				StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
-			Files.write(Paths.get(dirBase, "urls"), "http://localhost:32451".getBytes(StandardCharsets.UTF_8),
+			Files.writeString(Paths.get(dirBase, "urls"), "http://localhost:32451",
 				StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -147,9 +147,9 @@ public class WholeTest {
 
 		@Override
 		public void handle(HttpExchange t) throws IOException {
-			final var uri = t.getRequestURI().toString().substring(0);
+			final var uri = t.getRequestURI().toString();
 			final var inputStream = this.getClass().getResourceAsStream(uri);
-			final var bytes = inputStream.readAllBytes();
+			final var bytes = Objects.requireNonNull(inputStream).readAllBytes();
 			inputStream.close();
 			final var s = new String(bytes);
 			t.sendResponseHeaders(200, bytes.length);

@@ -3,6 +3,7 @@ package jcwasmx86.store.data;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -18,18 +19,18 @@ import java.util.Objects;
  * {@code isLibrary} signals, that this app shouldn't be listed.
  */
 public final class AppDescriptor {
-	private URL downloadBundle;
-	private String uniqueIdentifier;
-	private long installedSize;
-	private String name;
-	private String description;
-	private URL logo;
-	private URL[] imageURLs;
-	private String[] dependencies;
-	private String version;
-	private String[] tags;
-	private boolean isLibrary;
-	private Hashes hashes;
+	private final URL downloadBundle;
+	private final String uniqueIdentifier;
+	private final long installedSize;
+	private final String name;
+	private final String description;
+	private final URL logo;
+	private final URL[] imageURLs;
+	private final String[] dependencies;
+	private final String version;
+	private final String[] tags;
+	private final boolean isLibrary;
+	private final Hashes hashes;
 
 	public AppDescriptor(URL downloadBundle, String uniqueIdentifier, long installedSize, String name,
 						 String description, URL logo,
@@ -94,8 +95,9 @@ public final class AppDescriptor {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(downloadBundle, uniqueIdentifier, installedSize, name, description, logo, imageURLs,
-			dependencies, version, tags, isLibrary, hashes);
+		return Objects.hash(downloadBundle, uniqueIdentifier, installedSize, name, description, logo,
+			Arrays.hashCode(imageURLs),
+			Arrays.hashCode(dependencies), version, Arrays.hashCode(tags), isLibrary, hashes);
 	}
 
 	@Override
@@ -107,10 +109,10 @@ public final class AppDescriptor {
 			"name=" + name + ", " +
 			"description=" + description + ", " +
 			"logo=" + logo + ", " +
-			"imageURLs=" + imageURLs + ", " +
-			"dependencies=" + dependencies + ", " +
+			"imageURLs=" + Arrays.toString(imageURLs) + ", " +
+			"dependencies=" + Arrays.toString(dependencies) + ", " +
 			"version=" + version + ", " +
-			"tags=" + tags + ", " +
+			"tags=" + Arrays.toString(tags) + ", " +
 			"isLibrary=" + isLibrary + ", " +
 			"hashes=" + hashes + ']';
 	}
@@ -120,9 +122,9 @@ public final class AppDescriptor {
 	 * Hashes of the downloaded bundle. MD5, SHA1, SHA2 to prevent data corruption and validate the downloaded package.
 	 */
 	public static final class Hashes {
-		private String md5;
-		private String sha1;
-		private String sha2;
+		private final String md5;
+		private final String sha1;
+		private final String sha2;
 
 		public Hashes(String md5, String sha1, String sha2) {
 			this.md5 = md5;

@@ -1,274 +1,274 @@
 [
-	{
-		"downloadBundle": "http://localhost:32451/_res/0.zip",
-		"uniqueIdentifier": "0",
-		"installedSize": 2,
-		"description": "0",
-		"imageURLs": [],
-		"dependencies": [],
-		"version": "1.0.0",
-		"tags": [],
-		"isLibrary": false,
-		"hashes": {
-			"md5": "954c04830114da1fb8a0d8f5ae303b73",
-			"sha1": "52a1510cc03566a8de5bad11ab870ec1135fd1ae",
-			"sha2": "4dd945b65d993a6d719f2e51137b933a499ff9d8892ec0cd0c00da20242c4839"
-		}
-	},
-	{
-		"downloadBundle": "http://localhost:32451/_res/1.zip",
-		"uniqueIdentifier": "1",
-		"installedSize": 2,
-		"description": "1",
-		"imageURLs": [],
-		"dependencies": [],
-		"version": "1.0.0",
-		"tags": [],
-		"isLibrary": false,
-		"hashes": {
-			"md5": "c2e16f02dc2b93f4d0e9857440fdb128",
-			"sha1": "df1a624faf4b969e34554efb2f0b4735e50bc6f7",
-			"sha2": "424a79c68d8216e803569e0e48a55fb9a6c1292f4cb19a79428e2f75205eb8e1"
-		}
-	},
-	{
-		"downloadBundle": "http://localhost:32451/_res/2.zip",
-		"uniqueIdentifier": "2",
-		"installedSize": 2,
-		"description": "2",
-		"imageURLs": [],
-		"dependencies": [],
-		"version": "1.0.0",
-		"tags": [],
-		"isLibrary": false,
-		"hashes": {
-			"md5": "20f7276150ba13fbd081139dea618037",
-			"sha1": "256ec0195b0da3ecf8c6fc31b305811afa4d4731",
-			"sha2": "3119c02343a6c6133b28ef695a465207d2fc726e9883c8337b8a268abaf5cfd3"
-		}
-	},
-	{
-		"downloadBundle": "http://localhost:32451/_res/3.zip",
-		"uniqueIdentifier": "3",
-		"installedSize": 2,
-		"description": "3",
-		"imageURLs": [],
-		"dependencies": [],
-		"version": "1.0.0",
-		"tags": [],
-		"isLibrary": false,
-		"hashes": {
-			"md5": "897eec277a2a70e78c27e50c5b36cdd0",
-			"sha1": "1f873acf9a067a1b9967d6e5f5945977d6aec9d5",
-			"sha2": "ddb491d3071c53f4a08d742f151578c3d160a6c616e7b13fa1c599eb9fbd8732"
-		}
-	},
-	{
-		"downloadBundle": "http://localhost:32451/_res/4.zip",
-		"uniqueIdentifier": "4",
-		"installedSize": 2,
-		"description": "4",
-		"imageURLs": [],
-		"dependencies": [],
-		"version": "1.0.0",
-		"tags": [],
-		"isLibrary": false,
-		"hashes": {
-			"md5": "7a3533e483d41cb3cc35e17744c36bc7",
-			"sha1": "04da127cffeed1a1521d127c7928c9784f300a8a",
-			"sha2": "05d06c5e0cdf36608615d0d979271b7630903be4e53957535481f99e8f1f0131"
-		}
-	},
-	{
-		"downloadBundle": "http://localhost:32451/_res/5.zip",
-		"uniqueIdentifier": "5",
-		"installedSize": 2,
-		"description": "5",
-		"imageURLs": [],
-		"dependencies": [],
-		"version": "1.0.0",
-		"tags": [],
-		"isLibrary": false,
-		"hashes": {
-			"md5": "04175cc83dd1f0c753ddcc6f4c0532af",
-			"sha1": "53a576457575b0e2b5569e52037591c45c9d35dd",
-			"sha2": "27b542af3cf9b555c6a71a6b2206387bd106b1afc61b382e46ffcd778a1f70da"
-		}
-	},
-	{
-		"downloadBundle": "http://localhost:32451/_res/6.zip",
-		"uniqueIdentifier": "6",
-		"installedSize": 2,
-		"description": "6",
-		"imageURLs": [],
-		"dependencies": [],
-		"version": "1.0.0",
-		"tags": [],
-		"isLibrary": false,
-		"hashes": {
-			"md5": "509238a8acb0a315d42a1df7ffc667e6",
-			"sha1": "bc04e6ed2b22415b020b759e92231e56616ce413",
-			"sha2": "4a956b7bd361e69d4606fdfd39d8c2026f913dfcf1414c32aef417b234219656"
-		}
-	},
-	{
-		"downloadBundle": "http://localhost:32451/_res/7.zip",
-		"uniqueIdentifier": "7",
-		"installedSize": 2,
-		"description": "7",
-		"imageURLs": [],
-		"dependencies": [],
-		"version": "1.0.0",
-		"tags": [],
-		"isLibrary": false,
-		"hashes": {
-			"md5": "88e86923630bfddc9c48796596c106b3",
-			"sha1": "1021d4c369c9751e603515c35a5ce9d1c239c578",
-			"sha2": "9c6e071d6aa18aa786ee86023773d0e67be2fd3683d35eeaba0b22eb0995bbae"
-		}
-	},
-	{
-		"downloadBundle": "http://localhost:32451/_res/0.zip",
-		"uniqueIdentifier": "0",
-		"installedSize": 2,
-		"description": "0",
-		"imageURLs": [],
-		"dependencies": [],
-		"version": "1.0.0",
-		"tags": [],
-		"isLibrary": false,
-		"hashes": {
-			"md5": "954c04830114da1fb8a0d8f5ae303b73",
-			"sha1": "52a1510cc03566a8de5bad11ab870ec1135fd1ae",
-			"sha2": "4dd945b65d993a6d719f2e51137b933a499ff9d8892ec0cd0c00da20242c4839"
-		}
-	},
-	{
-		"downloadBundle": "http://localhost:32451/_res/8.zip",
-		"uniqueIdentifier": "8",
-		"installedSize": 2,
-		"description": "8",
-		"imageURLs": [],
-		"dependencies": [],
-		"version": "1.0.0",
-		"tags": [],
-		"isLibrary": false,
-		"hashes": {
-			"md5": "95e73db26eed3365150dc90ebad7f84e",
-			"sha1": "f2f0e4b92ae4faf8c54427bb4ad5951764a10ae9",
-			"sha2": "bc0f5feb2dd6d62a0fd63120f144e93871648cafbc51b5af4a4c0177f67e3be1"
-		}
-	},
-	{
-		"downloadBundle": "http://localhost:32451/_res/9.zip",
-		"uniqueIdentifier": "9",
-		"installedSize": 2,
-		"description": "9",
-		"imageURLs": [],
-		"dependencies": [],
-		"version": "1.0.0",
-		"tags": [],
-		"isLibrary": false,
-		"hashes": {
-			"md5": "15fe8f916942de5ee67445568e10aa82",
-			"sha1": "fb396c73a32ee7ecdf6f96f54d2786d2e6b8ae7b",
-			"sha2": "7c4623751bff2e8b03cabb69b1af8f21e312adff6a6d50bacfa282295fb6ce60"
-		}
-	},
-	{
-		"downloadBundle": "http://localhost:32451/_res/10.zip",
-		"uniqueIdentifier": "10",
-		"installedSize": 2,
-		"description": "10",
-		"imageURLs": [],
-		"dependencies": [],
-		"version": "1.0.0",
-		"tags": [],
-		"isLibrary": false,
-		"hashes": {
-			"md5": "f43bff447c6405965ca7699f19cd6d99",
-			"sha1": "7b897125762c49a27c367f68d7f8575c194704bd",
-			"sha2": "bcf2e0ccfedd171171b52dc568483fadc5486fd57ab0bd7365b0b2e7253d136a"
-		}
-	},
-	{
-		"downloadBundle": "http://localhost:32451/_res/11.zip",
-		"uniqueIdentifier": "11",
-		"installedSize": 2,
-		"description": "11",
-		"imageURLs": [],
-		"dependencies": [],
-		"version": "1.0.0",
-		"tags": [],
-		"isLibrary": false,
-		"hashes": {
-			"md5": "f463493e796578c2e719d37113c24eba",
-			"sha1": "4940f05944390f1dddf27f33f8d39916da01ce39",
-			"sha2": "256e9a1236427c8820b0c5ab08462bb1952ff5546c9547367452aa02830f130a"
-		}
-	},
-	{
-		"downloadBundle": "http://localhost:32451/_res/12.zip",
-		"uniqueIdentifier": "12",
-		"installedSize": 2,
-		"description": "12",
-		"imageURLs": [],
-		"dependencies": [],
-		"version": "1.0.0",
-		"tags": [],
-		"isLibrary": false,
-		"hashes": {
-			"md5": "f11693810401ac8d7d199addc37550d1",
-			"sha1": "f637f14429e6ec93759458c11380b44c9b187ef0",
-			"sha2": "ac474d4399e06cc21e6cd8ad0a6f01d2365817cf8a80c2c5fa16a288647b6176"
-		}
-	},
-	{
-		"downloadBundle": "http://localhost:32451/_res/13.zip",
-		"uniqueIdentifier": "13",
-		"installedSize": 2,
-		"description": "13",
-		"imageURLs": [],
-		"dependencies": [],
-		"version": "1.0.0",
-		"tags": [],
-		"isLibrary": false,
-		"hashes": {
-			"md5": "0371d06e61fa92fc8a5a3f63c87d5a05",
-			"sha1": "ff536836ce3667144d4aca2e648276bee0377745",
-			"sha2": "b78c098c1d57d10d7897073be7dfa678872ca89289b5d8d4f8e76d519ede01c4"
-		}
-	},
-	{
-		"downloadBundle": "http://localhost:32451/_res/14.zip",
-		"uniqueIdentifier": "14",
-		"installedSize": 2,
-		"description": "14",
-		"imageURLs": [],
-		"dependencies": [],
-		"version": "1.0.0",
-		"tags": [],
-		"isLibrary": false,
-		"hashes": {
-			"md5": "334e49a9c98b86dbff80c8caed3fed12",
-			"sha1": "b40ba1371aa90946d2669171c0f5392e32b609c4",
-			"sha2": "72bc733a88247aed0c242fdd675283d9b0df64846de907deba16969b20c4cecc"
-		}
-	},
-	{
-		"downloadBundle": "http://localhost:32451/_res/15.zip",
-		"uniqueIdentifier": "15",
-		"installedSize": 2,
-		"description": "15",
-		"imageURLs": [],
-		"dependencies": [],
-		"version": "1.0.0",
-		"tags": [],
-		"isLibrary": false,
-		"hashes": {
-			"md5": "a0b0db587170f8494fbd92c809302886",
-			"sha1": "f314397fa59c9f521dcfb4821083b76637ad50ae",
-			"sha2": "ee08dc7f2823063e4776200b7ea7a01ae5f3b048d7a91fea31a35672b66aba33"
-		}
+  {
+	"downloadBundle": "http://localhost:32451/_res/0.zip",
+	"uniqueIdentifier": "0",
+	"installedSize": 2,
+	"description": "0",
+	"imageURLs": [],
+	"dependencies": [],
+	"version": "1.0.0",
+	"tags": [],
+	"isLibrary": false,
+	"hashes": {
+	  "md5": "954c04830114da1fb8a0d8f5ae303b73",
+	  "sha1": "52a1510cc03566a8de5bad11ab870ec1135fd1ae",
+	  "sha2": "4dd945b65d993a6d719f2e51137b933a499ff9d8892ec0cd0c00da20242c4839"
 	}
+  },
+  {
+	"downloadBundle": "http://localhost:32451/_res/1.zip",
+	"uniqueIdentifier": "1",
+	"installedSize": 2,
+	"description": "1",
+	"imageURLs": [],
+	"dependencies": [],
+	"version": "1.0.0",
+	"tags": [],
+	"isLibrary": false,
+	"hashes": {
+	  "md5": "c2e16f02dc2b93f4d0e9857440fdb128",
+	  "sha1": "df1a624faf4b969e34554efb2f0b4735e50bc6f7",
+	  "sha2": "424a79c68d8216e803569e0e48a55fb9a6c1292f4cb19a79428e2f75205eb8e1"
+	}
+  },
+  {
+	"downloadBundle": "http://localhost:32451/_res/2.zip",
+	"uniqueIdentifier": "2",
+	"installedSize": 2,
+	"description": "2",
+	"imageURLs": [],
+	"dependencies": [],
+	"version": "1.0.0",
+	"tags": [],
+	"isLibrary": false,
+	"hashes": {
+	  "md5": "20f7276150ba13fbd081139dea618037",
+	  "sha1": "256ec0195b0da3ecf8c6fc31b305811afa4d4731",
+	  "sha2": "3119c02343a6c6133b28ef695a465207d2fc726e9883c8337b8a268abaf5cfd3"
+	}
+  },
+  {
+	"downloadBundle": "http://localhost:32451/_res/3.zip",
+	"uniqueIdentifier": "3",
+	"installedSize": 2,
+	"description": "3",
+	"imageURLs": [],
+	"dependencies": [],
+	"version": "1.0.0",
+	"tags": [],
+	"isLibrary": false,
+	"hashes": {
+	  "md5": "897eec277a2a70e78c27e50c5b36cdd0",
+	  "sha1": "1f873acf9a067a1b9967d6e5f5945977d6aec9d5",
+	  "sha2": "ddb491d3071c53f4a08d742f151578c3d160a6c616e7b13fa1c599eb9fbd8732"
+	}
+  },
+  {
+	"downloadBundle": "http://localhost:32451/_res/4.zip",
+	"uniqueIdentifier": "4",
+	"installedSize": 2,
+	"description": "4",
+	"imageURLs": [],
+	"dependencies": [],
+	"version": "1.0.0",
+	"tags": [],
+	"isLibrary": false,
+	"hashes": {
+	  "md5": "7a3533e483d41cb3cc35e17744c36bc7",
+	  "sha1": "04da127cffeed1a1521d127c7928c9784f300a8a",
+	  "sha2": "05d06c5e0cdf36608615d0d979271b7630903be4e53957535481f99e8f1f0131"
+	}
+  },
+  {
+	"downloadBundle": "http://localhost:32451/_res/5.zip",
+	"uniqueIdentifier": "5",
+	"installedSize": 2,
+	"description": "5",
+	"imageURLs": [],
+	"dependencies": [],
+	"version": "1.0.0",
+	"tags": [],
+	"isLibrary": false,
+	"hashes": {
+	  "md5": "04175cc83dd1f0c753ddcc6f4c0532af",
+	  "sha1": "53a576457575b0e2b5569e52037591c45c9d35dd",
+	  "sha2": "27b542af3cf9b555c6a71a6b2206387bd106b1afc61b382e46ffcd778a1f70da"
+	}
+  },
+  {
+	"downloadBundle": "http://localhost:32451/_res/6.zip",
+	"uniqueIdentifier": "6",
+	"installedSize": 2,
+	"description": "6",
+	"imageURLs": [],
+	"dependencies": [],
+	"version": "1.0.0",
+	"tags": [],
+	"isLibrary": false,
+	"hashes": {
+	  "md5": "509238a8acb0a315d42a1df7ffc667e6",
+	  "sha1": "bc04e6ed2b22415b020b759e92231e56616ce413",
+	  "sha2": "4a956b7bd361e69d4606fdfd39d8c2026f913dfcf1414c32aef417b234219656"
+	}
+  },
+  {
+	"downloadBundle": "http://localhost:32451/_res/7.zip",
+	"uniqueIdentifier": "7",
+	"installedSize": 2,
+	"description": "7",
+	"imageURLs": [],
+	"dependencies": [],
+	"version": "1.0.0",
+	"tags": [],
+	"isLibrary": false,
+	"hashes": {
+	  "md5": "88e86923630bfddc9c48796596c106b3",
+	  "sha1": "1021d4c369c9751e603515c35a5ce9d1c239c578",
+	  "sha2": "9c6e071d6aa18aa786ee86023773d0e67be2fd3683d35eeaba0b22eb0995bbae"
+	}
+  },
+  {
+	"downloadBundle": "http://localhost:32451/_res/0.zip",
+	"uniqueIdentifier": "0",
+	"installedSize": 2,
+	"description": "0",
+	"imageURLs": [],
+	"dependencies": [],
+	"version": "1.0.0",
+	"tags": [],
+	"isLibrary": false,
+	"hashes": {
+	  "md5": "954c04830114da1fb8a0d8f5ae303b73",
+	  "sha1": "52a1510cc03566a8de5bad11ab870ec1135fd1ae",
+	  "sha2": "4dd945b65d993a6d719f2e51137b933a499ff9d8892ec0cd0c00da20242c4839"
+	}
+  },
+  {
+	"downloadBundle": "http://localhost:32451/_res/8.zip",
+	"uniqueIdentifier": "8",
+	"installedSize": 2,
+	"description": "8",
+	"imageURLs": [],
+	"dependencies": [],
+	"version": "1.0.0",
+	"tags": [],
+	"isLibrary": false,
+	"hashes": {
+	  "md5": "95e73db26eed3365150dc90ebad7f84e",
+	  "sha1": "f2f0e4b92ae4faf8c54427bb4ad5951764a10ae9",
+	  "sha2": "bc0f5feb2dd6d62a0fd63120f144e93871648cafbc51b5af4a4c0177f67e3be1"
+	}
+  },
+  {
+	"downloadBundle": "http://localhost:32451/_res/9.zip",
+	"uniqueIdentifier": "9",
+	"installedSize": 2,
+	"description": "9",
+	"imageURLs": [],
+	"dependencies": [],
+	"version": "1.0.0",
+	"tags": [],
+	"isLibrary": false,
+	"hashes": {
+	  "md5": "15fe8f916942de5ee67445568e10aa82",
+	  "sha1": "fb396c73a32ee7ecdf6f96f54d2786d2e6b8ae7b",
+	  "sha2": "7c4623751bff2e8b03cabb69b1af8f21e312adff6a6d50bacfa282295fb6ce60"
+	}
+  },
+  {
+	"downloadBundle": "http://localhost:32451/_res/10.zip",
+	"uniqueIdentifier": "10",
+	"installedSize": 2,
+	"description": "10",
+	"imageURLs": [],
+	"dependencies": [],
+	"version": "1.0.0",
+	"tags": [],
+	"isLibrary": false,
+	"hashes": {
+	  "md5": "f43bff447c6405965ca7699f19cd6d99",
+	  "sha1": "7b897125762c49a27c367f68d7f8575c194704bd",
+	  "sha2": "bcf2e0ccfedd171171b52dc568483fadc5486fd57ab0bd7365b0b2e7253d136a"
+	}
+  },
+  {
+	"downloadBundle": "http://localhost:32451/_res/11.zip",
+	"uniqueIdentifier": "11",
+	"installedSize": 2,
+	"description": "11",
+	"imageURLs": [],
+	"dependencies": [],
+	"version": "1.0.0",
+	"tags": [],
+	"isLibrary": false,
+	"hashes": {
+	  "md5": "f463493e796578c2e719d37113c24eba",
+	  "sha1": "4940f05944390f1dddf27f33f8d39916da01ce39",
+	  "sha2": "256e9a1236427c8820b0c5ab08462bb1952ff5546c9547367452aa02830f130a"
+	}
+  },
+  {
+	"downloadBundle": "http://localhost:32451/_res/12.zip",
+	"uniqueIdentifier": "12",
+	"installedSize": 2,
+	"description": "12",
+	"imageURLs": [],
+	"dependencies": [],
+	"version": "1.0.0",
+	"tags": [],
+	"isLibrary": false,
+	"hashes": {
+	  "md5": "f11693810401ac8d7d199addc37550d1",
+	  "sha1": "f637f14429e6ec93759458c11380b44c9b187ef0",
+	  "sha2": "ac474d4399e06cc21e6cd8ad0a6f01d2365817cf8a80c2c5fa16a288647b6176"
+	}
+  },
+  {
+	"downloadBundle": "http://localhost:32451/_res/13.zip",
+	"uniqueIdentifier": "13",
+	"installedSize": 2,
+	"description": "13",
+	"imageURLs": [],
+	"dependencies": [],
+	"version": "1.0.0",
+	"tags": [],
+	"isLibrary": false,
+	"hashes": {
+	  "md5": "0371d06e61fa92fc8a5a3f63c87d5a05",
+	  "sha1": "ff536836ce3667144d4aca2e648276bee0377745",
+	  "sha2": "b78c098c1d57d10d7897073be7dfa678872ca89289b5d8d4f8e76d519ede01c4"
+	}
+  },
+  {
+	"downloadBundle": "http://localhost:32451/_res/14.zip",
+	"uniqueIdentifier": "14",
+	"installedSize": 2,
+	"description": "14",
+	"imageURLs": [],
+	"dependencies": [],
+	"version": "1.0.0",
+	"tags": [],
+	"isLibrary": false,
+	"hashes": {
+	  "md5": "334e49a9c98b86dbff80c8caed3fed12",
+	  "sha1": "b40ba1371aa90946d2669171c0f5392e32b609c4",
+	  "sha2": "72bc733a88247aed0c242fdd675283d9b0df64846de907deba16969b20c4cecc"
+	}
+  },
+  {
+	"downloadBundle": "http://localhost:32451/_res/15.zip",
+	"uniqueIdentifier": "15",
+	"installedSize": 2,
+	"description": "15",
+	"imageURLs": [],
+	"dependencies": [],
+	"version": "1.0.0",
+	"tags": [],
+	"isLibrary": false,
+	"hashes": {
+	  "md5": "a0b0db587170f8494fbd92c809302886",
+	  "sha1": "f314397fa59c9f521dcfb4821083b76637ad50ae",
+	  "sha2": "ee08dc7f2823063e4776200b7ea7a01ae5f3b048d7a91fea31a35672b66aba33"
+	}
+  }
 ]
